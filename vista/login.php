@@ -23,7 +23,7 @@
     <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
       <div class="container px-4">
         <a class="navbar-brand" href="../index.html">
-          <img src="../img/brand/white.png" />
+          <img src="../img/brand/logo.png" />
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -44,34 +44,7 @@
                 </button>
               </div>
             </div>
-          </div>
-          <!-- Navbar items -->
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="../index.html">
-                <i class="ni ni-planet"></i>
-                <span class="nav-link-inner--text">Dashboard</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="../examples/register.html">
-                <i class="ni ni-circle-08"></i>
-                <span class="nav-link-inner--text">Registro</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="../examples/login.html">
-                <i class="ni ni-key-25"></i>
-                <span class="nav-link-inner--text">Login</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="../examples/profile.html">
-                <i class="ni ni-single-02"></i>
-                <span class="nav-link-inner--text">Perfil</span>
-              </a>
-            </li>
-          </ul>
+          </div>        
         </div>
       </div>
     </nav>
@@ -81,7 +54,7 @@
         <div class="header-body text-center mb-7">
           <div class="row justify-content-center">
             <div class="col-lg-5 col-md-6">
-              <h1 class="text-white">Benvenido!</h1>
+              <h1 class="text-white">¡ Bienvenido a Systickets !</h1>
               <p class="text-lead text-light">Este es nuestro sistema de inicio de sesion, por favor complete los campos.</p>
             </div>
           </div>
@@ -101,16 +74,16 @@
             <div class="card-body px-lg-5 py-lg-5">
               <form role="form" id="formulario" method="post" action="../login/verificar.php" >
                 <?php 
-			      if(isset($_GET['error'])){
-			      	echo '<div align="center" class="alert alert-info">DATOS NO VALIDOS !</div>';
-			       }
-			     ?>
+      			      if(isset($_GET['error'])){
+      			      	echo '<div align="center" class="alert alert-info">DATOS NO VALIDOS !</div>';
+      			       }
+      			    ?>
                 <div class="form-group mb-3">
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                     </div>
-                    <input class="form-control" id="usuario" name="usuario" placeholder="Usuario">
+                    <input class="form-control" id="usuario" name="usuario" placeholder="Usuario" required="">
                       </div>
                 </div>
                 <div class="form-group">
@@ -118,14 +91,8 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
-                    <input type="password" class="form-control" id="clave" name="clave" placeholder="Contraseña">
+                    <input type="password" class="form-control" id="clave" name="clave" placeholder="Contraseña" required="">
                   </div>
-                </div>
-                <div class="custom-control custom-control-alternative custom-checkbox">
-                  <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
-                  <label class="custom-control-label" for=" customCheckLogin">
-                    <span class="text-muted">Recuerdame</span>
-                  </label>
                 </div>
                 <div class="text-center">
                   <button class="btn btn-primary my-4" type="submit" name="aceptar" value="Aceptar" >Iniciar Sesion</button>
@@ -141,9 +108,9 @@
         <div class="row align-items-center justify-content-xl-between">
           <div class="col-xl-6">
             <div class="copyright text-center text-xl-left text-muted">
-              © 2018 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank">Creative Tim</a>
+              © 2020 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank">Systickets</a>
             </div>
-          </div>
+          <!--html</div>
           <div class="col-xl-6">
             <ul class="nav nav-footer justify-content-center justify-content-xl-end">
               <li class="nav-item">
@@ -159,7 +126,7 @@
                 <a href="https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md" class="nav-link" target="_blank">MIT License</a>
               </li>
             </ul>
-          </div>
+          </div>-->
         </div>
       </div>
     </footer>
