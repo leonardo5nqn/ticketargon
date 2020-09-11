@@ -1,5 +1,5 @@
 <?php
 session_start();
 unset($_SESSION['UserSesion']);
-header("Location: ../index.php");
+header("Location: ../vista/login.php");
 ?>

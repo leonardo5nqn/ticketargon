@@ -6,7 +6,7 @@
       </button>
       <!-- Brand -->
       <a class="navbar-brand pt-0" href="./index.html">
-        <img src="./img/brand/blue.png" class="navbar-brand-img" alt="...">
+        <img src="./img/brand/logo-blue.png" class="navbar-brand-img" alt="...">
       </a>
       <!-- User -->
       <ul class="nav align-items-center d-md-none">
@@ -174,7 +174,7 @@
                 <span>Support</span>
               </a>
               <div class="dropdown-divider"></div>
-              <a href="#!" class="dropdown-item">
+                <a class="dropdown-item" id="salir" href="./login/cerrar.php">
                 <i class="ni ni-user-run"></i>
                 <span>Logout</span>
               </a>
