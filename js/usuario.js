@@ -172,3 +172,19 @@ jQuery(document).ready(function(){
 function ejemplo(param){
 	console.log(param);
 }
+
+function showarea(){
+	//si el id seleccionado por el usuario es tecnico
+		//Muestro una lista de areas (option hidden)
+		//cargamos el select hidden a traves de ajax con listararea()
+	
+	
+	//si no es tecnico 
+		//Oculto AREA
+}
+
+function listararea()
+{
+	//debe buscar en base de datos a traves de ajax y en un php todas las areas de la bd
+	//Retorna o llena las opciones del select area
+}

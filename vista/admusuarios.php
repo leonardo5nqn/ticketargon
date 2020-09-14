@@ -192,15 +192,17 @@
               
               <div class="form-group">         
                 <label for="perfilid">Perfil</label>
-                <select class="custom-select custom-select-lg mb-3" id="perfilid" name="perfilid" id="perfilid">
+                <select class="custom-select custom-select-lg mb-3" id="perfilid" name="perfilid" id="perfilid" onChange="listararea()">
                   <option selected>Seleccione un Perfil</option>  
-                    //<?php 
+                    <?php 
                     include_once('controlador/usuarioc.php');
-                    $usuarioc = new UsuarioC();
-                    echo $usuarioc->select();
+                    $sResult = UsuarioC::select(" AND perfilid IN (2,3)");
+                    echo $sResult;
                     ?>
                 </select>
               </div>
+
+              <!-- Agregar elemento select hidden por defecto de areas -->
             </div>  
             <div class="modal-footer">
               <button type="button" name="grabar" class="btn btn-default" id="grabar" data-dismiss="modal" >Grabar Usuario</button>
@@ -211,6 +213,6 @@
       </div>  
     </div>
   </form> 
-  <script src="js/usuario.js?v=1"></script>
+  <script src="js/usuario.js?v=3"></script>
 
 </div>

@@ -117,10 +117,10 @@ class UsuarioC{
 		}
 		return;
 	}
-	public function select(){
+	public static function select($sAnd){
 		$ret = '';
 		$mysqli = Conexion::abrir();
-		$sql = "SELECT perfilid, descripcion FROM perfil WHERE estado = 0";
+		$sql = "SELECT perfilid, descripcion FROM perfil WHERE estado = 0 ".$sAnd;
 		$stmt = $mysqli->prepare($sql);
 		if($stmt!==FALSE){
 			$stmt->execute();
