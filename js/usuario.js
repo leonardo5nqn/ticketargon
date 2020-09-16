@@ -1,5 +1,4 @@
 jQuery(document).ready(function(){
-	
 	listar();
 	jQuery('#addusuario').on('click',function(){
 		jQuery('#ventanausuario').modal('show');		
@@ -9,44 +8,26 @@ jQuery(document).ready(function(){
 		var error = false;
 		if(jQuery('#nombre').val()==''){
 			error = true;
-			alert('falta el nombre');
-			jQuery('#nombre').css('background-color','red');
 		}
 		if(jQuery('#apellido').val()==''){
 			error = true;
-			alert('falta el apellido');
-			jQuery('#apellido').css('background-color','red');
 		}
 		if(jQuery('#fecnac').val()==''){
 			error = true;
-			alert('falta la fecha de nacimiento');
-			jQuery('#fecnac').css('background-color','red');	
 		}
 		if(jQuery('#correo').val()==''){
 			error = true;
-			alert('falta el correo');
-			jQuery('#correo').css('background-color','red');
 		}			
 		if(jQuery('#usu').val()==''){
 			error = true;
-			alert('falta el usuario');
-			jQuery('#usu').css('background-color','red');
 		}
 		if(jQuery('#clave').val()==''){
 			error = true;
-			alert('falta la clave');
-			jQuery('#clave').css('background-color','red');
 		}
 		if(jQuery('#perfilid').val()==''){
 			error = true;
-			alert('falta el perfilid');
-			jQuery('#perfilid').css('background-color','red');
 		}
-		/*if(jQuery('#estado').val()==''){
-			error = true;
-			alert('falta el estado');
-			jQuery('#estado').css('background-color','red');
-		}*/
+
 		
 		if(!error){
 			var datos = {
@@ -76,7 +57,7 @@ jQuery(document).ready(function(){
 	});
 		}
 	$(".modal-body input").val('');	
-});
+	});
 
 	jQuery('#nombre').on('keypress',function(){
 		jQuery(this).css('background-color','white');

@@ -100,7 +100,32 @@
 			include_once('../controlador/ticketc.php');
 			$ticketc = new TicketC();
 			$retorno = $ticketc->eliminar();
-			break;			
+			break;
+		case 60000:
+			include_once('../controlador/areac.php');
+			$areac = new AreaC();
+			$retorno = $areac->listar();
+			break;	
+		case 60001:
+			include_once('../controlador/areac.php');
+			$areac = new AreaC();
+			$retorno = $areac->add($_POST);
+			break;
+		case 60002:
+			include_once('../controlador/areac.php');
+			$areac = new AreaC();
+			$retorno = $areac->editar($_POST);
+			break;	
+		case 60003:
+			include_once('../controlador/areac.php');
+			$areac = new AreaC();
+			$retorno = $areac->buscar($_POST);
+			break;	
+		case 60004:
+			include_once('../controlador/areac.php');
+			$areac = new AreaC();
+			$retorno = $areac->eliminar();
+			break;				
 	}
 	echo json_encode($retorno);
 ?>

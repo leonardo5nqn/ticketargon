@@ -11,6 +11,9 @@ jQuery(document).ready(function(){
 	jQuery('#perfiles').on('click', function(){
 		jQuery('#contenedor').load('vista/admperfil.php')
 	});
+	jQuery('#areas').on('click', function(){
+		jQuery('#contenedor').load('vista/admarea.php')
+	});
 	jQuery('#info').on('click', function(){
 		jQuery('#contenedor').load('vista/info.php')
 	});

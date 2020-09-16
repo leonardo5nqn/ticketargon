@@ -9,6 +9,7 @@
         <img src="./img/brand/logo-blue.png" class="navbar-brand-img" alt="...">
       </a>
       <!-- User -->
+       <!--
       <ul class="nav align-items-center d-md-none">
         <li class="nav-item dropdown">
           <a class="nav-link nav-link-icon" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -21,7 +22,7 @@
             <a class="dropdown-item" href="#">Something else here</a>
           </div>
         </li>
-        <li class="nav-item dropdown">
+       <li class="nav-item dropdown">
           <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="media align-items-center">
               <span class="avatar avatar-sm rounded-circle">
@@ -41,14 +42,6 @@
               <i class="ni ni-settings-gear-65"></i>
               <span>Settings</span>
             </a>
-            <a href="./profile.html" class="dropdown-item">
-              <i class="ni ni-calendar-grid-58"></i>
-              <span>Activity</span>
-            </a>
-            <a href="./profile.html" class="dropdown-item">
-              <i class="ni ni-support-16"></i>
-              <span>Support</span>
-            </a>
             <div class="dropdown-divider"></div>
             <a href="#!" class="dropdown-item">
               <i class="ni ni-user-run"></i>
@@ -56,7 +49,7 @@
             </a>
           </div>
         </li>
-      </ul>
+      </ul>-->
       <!-- Collapse -->
       <div class="collapse navbar-collapse" id="sidenav-collapse-main">
         <!-- Collapse header -->
@@ -95,7 +88,9 @@
           <li class="nav-item">
             <a class="nav-link " id="usuario" href="#"><i class="ni ni-single-02 text-yellow"></i> Usuarios</a></li>
           <li class="nav-item">
-            <a class="nav-link " id="perfiles" href="#"><i class="ni ni-bullet-list-67 text-red"></i> Perfiles</a></li>
+            <a class="nav-link " id="perfiles" href="#"><i class="ni ni-badge text-red"></i> Perfiles</a></li>
+          <li class="nav-item">
+            <a class="nav-link " id="areas" href="#"><i class="ni ni-bullet-list-67 text-red"></i> Areas</a></li>
           <li class="nav-item">
         </ul>
         <!-- Divider -->
@@ -155,28 +150,20 @@
             </a>
             <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
               <div class=" dropdown-header noti-title">
-                <h6 class="text-overflow m-0">Welcome!</h6>
+                <h6 class="text-overflow m-0">Bienvenido!</h6>
               </div>
               <a href="./vista/profile.html" class="dropdown-item">
                 <i class="ni ni-single-02"></i>
-                <span>My profile</span>
+                <span>Mi Perfil</span>
               </a>
               <a href="./vista/profile.html" class="dropdown-item">
                 <i class="ni ni-settings-gear-65"></i>
-                <span>Settings</span>
-              </a>
-              <a href="./vista/profile.html" class="dropdown-item">
-                <i class="ni ni-calendar-grid-58"></i>
-                <span>Activity</span>
-              </a>
-              <a href="./vista/profile.html" class="dropdown-item">
-                <i class="ni ni-support-16"></i>
-                <span>Support</span>
+                <span>Configuracion</span>
               </a>
               <div class="dropdown-divider"></div>
                 <a class="dropdown-item" id="salir" href="./login/cerrar.php">
                 <i class="ni ni-user-run"></i>
-                <span>Logout</span>
+                <span>Salir</span>
               </a>
             </div>
           </li>
@@ -299,4 +286,4 @@
 </body>
 
 </html>  
-<script src="js/menu.js?v=4"></script>
+<script src="js/menu.js?v=5"></script>

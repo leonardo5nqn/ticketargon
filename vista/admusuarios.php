@@ -179,15 +179,15 @@
               </div>
               <div class="form-group">
                 <label for="correo">Correo:</label>
-                <input type="text" class="form-control" id="correo" name="correo">
+                <input type="text" class="form-control" id="correo" name="correo" required="">
               </div>
               <div class="form-group">
                 <label for="usu">Usuario</label>
-                <input class="form-control" type="text" name="usu"  id="usu" >
+                <input class="form-control" type="text" name="usu"  id="usu" required="" >
               </div>
               <div class="form-group">      
                 <label for="clave">Clave</label>
-                <input  class="form-control" type="text" name="clave"  id="clave" >     
+                <input  class="form-control" type="text" name="clave"  id="clave" required="" >     
               </div>
               
               <div class="form-group">         
@@ -201,7 +201,18 @@
                     ?>
                 </select>
               </div>
-
+               <div class="form-group">         
+                <label for="perfilid">Areas</label>
+                <select class="custom-select custom-select-lg mb-3" id="areaid" name="areaid" id="areaid" onChange="listararea()">
+                  <option selected>Seleccione un Area</option>  
+                    <?php 
+                    include_once('controlador/areac.php');
+                    exit('hola');
+                    $sResult = AreaC::select();
+                    echo $sResult;
+                    ?>
+                </select>
+              </div>
               <!-- Agregar elemento select hidden por defecto de areas -->
             </div>  
             <div class="modal-footer">
@@ -213,6 +224,6 @@
       </div>  
     </div>
   </form> 
-  <script src="js/usuario.js?v=3"></script>
+  <script src="js/usuario.js?v=2"></script>
 
 </div>
