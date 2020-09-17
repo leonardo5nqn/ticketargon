@@ -36,6 +36,9 @@ include_once('modelo/usuario.php');
         if (isset($_SESSION['UserSession'][0]['PerfilId']) && $_SESSION['UserSession'][0]['PerfilId']=='2' ) {
           include('vista/menucliente.php');
         }
+        if (isset($_SESSION['UserSession'][0]['PerfilId']) && $_SESSION['UserSession'][0]['PerfilId']=='3' ) {
+          include('vista/menutecnico.php');
+        }
 
         ?>
 

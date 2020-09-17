@@ -113,5 +113,5 @@
       </div>
     </div>
   </form>  
-  <script src="js/area.js?v=1"></script>
+  <script src="js/area.js?v=2"></script>
 </div>

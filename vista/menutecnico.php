@@ -1,4 +1,4 @@
-  <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
+<nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
     <div class="container-fluid">
       <!-- Toggler -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
@@ -6,10 +6,9 @@
       </button>
       <!-- Brand -->
       <a class="navbar-brand pt-0" href="./index.html">
-        <img src="./img/brand/logo-blue.png" class="navbar-brand-img" alt="...">
+        <img src="img/brand/logo-blue.png" class="navbar-brand-img" alt="...">
       </a>
       <!-- User -->
-       <!--
       <ul class="nav align-items-center d-md-none">
         <li class="nav-item dropdown">
           <a class="nav-link nav-link-icon" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -22,11 +21,11 @@
             <a class="dropdown-item" href="#">Something else here</a>
           </div>
         </li>
-       <li class="nav-item dropdown">
+        <li class="nav-item dropdown">
           <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="media align-items-center">
               <span class="avatar avatar-sm rounded-circle">
-                <img alt="Image placeholder" src="./assets/img/theme/team-1-800x800.jpg">
+                <img alt="Image placeholder" src="img/theme/team-1-800x800.jpg">
               </span>
             </div>
           </a>
@@ -34,13 +33,9 @@
             <div class=" dropdown-header noti-title">
               <h6 class="text-overflow m-0">Welcome!</h6>
             </div>
-            <a href="./profile.html" class="dropdown-item">
+            <a href="../profile.html" class="dropdown-item">
               <i class="ni ni-single-02"></i>
               <span>My profile</span>
-            </a>
-            <a href="./profile.html" class="dropdown-item">
-              <i class="ni ni-settings-gear-65"></i>
-              <span>Settings</span>
             </a>
             <div class="dropdown-divider"></div>
             <a href="#!" class="dropdown-item">
@@ -49,15 +44,15 @@
             </a>
           </div>
         </li>
-      </ul>-->
+      </ul>
       <!-- Collapse -->
       <div class="collapse navbar-collapse" id="sidenav-collapse-main">
         <!-- Collapse header -->
         <div class="navbar-collapse-header d-md-none">
           <div class="row">
             <div class="col-6 collapse-brand">
-              <a href="./index.html">
-                <img src="./img/brand/blue.png">
+              <a href="../index.html">
+                <img src="img/brand/blue.png">
               </a>
             </div>
             <div class="col-6 collapse-close">
@@ -85,13 +80,6 @@
             <a class="nav-link  active " href="./index.php"><i class="ni ni-tv-2 text-primary"></i> Inicio</a></li>
           <li class="nav-item">
             <a class="nav-link "id="ticket" href="#"><i class="ni ni-planet text-blue"></i> Tickets</a></li>
-          <li class="nav-item">
-            <a class="nav-link " id="usuario" href="#"><i class="ni ni-single-02 text-yellow"></i> Usuarios</a></li>
-          <li class="nav-item">
-            <a class="nav-link " id="perfiles" href="#"><i class="ni ni-badge text-red"></i> Perfiles</a></li>
-          <li class="nav-item">
-            <a class="nav-link " id="areas" href="#"><i class="ni ni-bullet-list-67 text-red"></i> Areas</a></li>
-          <li class="nav-item">
         </ul>
         <!-- Divider -->
         <hr class="my-3">
@@ -123,7 +111,7 @@
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
       <div class="container-fluid">
         <!-- Brand -->
-        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="./index.html">Dashboard</a>
+        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="index.php">Tecnico</a>
         <!-- Form -->
         <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
           <div class="form-group mb-0">
@@ -141,7 +129,7 @@
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="media align-items-center">
                 <span class="avatar avatar-sm rounded-circle">
-                  <img alt="Image placeholder" src="./img/theme/team-4-800x800.jpg">
+                  <img alt="Image placeholder" src="img/theme/team-4-800x800.jpg">
                 </span>
                 <div class="media-body ml-2 d-none d-lg-block">
                   <span class="mb-0 text-sm  font-weight-bold">Jessica Jones</span>
@@ -150,20 +138,19 @@
             </a>
             <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
               <div class=" dropdown-header noti-title">
-                <h6 class="text-overflow m-0">Bienvenido!</h6>
+                <h6 class="text-overflow m-0">Welcome!</h6>
               </div>
-              <a href="./vista/profile.html" class="dropdown-item">
+              <a href="../vista/profile.html" class="dropdown-item">
                 <i class="ni ni-single-02"></i>
-                <span>Mi Perfil</span>
-              </a>
-              <a href="./vista/profile.html" class="dropdown-item">
-                <i class="ni ni-settings-gear-65"></i>
-                <span>Configuracion</span>
+                <span>My profile</span>
+              <a href="../vista/profile.html" class="dropdown-item">
+                <i class="ni ni-support-16"></i>
+                <span>Support</span>
               </a>
               <div class="dropdown-divider"></div>
-                <a class="dropdown-item" id="salir" href="./login/cerrar.php">
+              <a class="dropdown-item" id="salir" href="./login/cerrar.php">
                 <i class="ni ni-user-run"></i>
-                <span>Salir</span>
+                <span>Logout</span>
               </a>
             </div>
           </li>
@@ -268,13 +255,13 @@
       </footer>
   </div>
   <!--   Core   -->
-  <script src="./js/plugins/jquery/dist/jquery.min.js"></script>
-  <script src="./js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/plugins/jquery/dist/jquery.min.js"></script>
+  <script src="js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <!--   Optional JS   -->
-  <script src="./js/plugins/chart.js/dist/Chart.min.js"></script>
-  <script src="./js/plugins/chart.js/dist/Chart.extension.js"></script>
+  <script src="js/plugins/chart.js/dist/Chart.min.js"></script>
+  <script src="js/plugins/chart.js/dist/Chart.extension.js"></script>
   <!--   Argon JS   -->
-  <script src="./js/argon-dashboard.min.js?v=1.1.2"></script>
+  <script src="js/argon-dashboard.min.js?v=1.1.2"></script>
   <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
   <script>
     window.TrackJS &&
@@ -286,4 +273,4 @@
 </body>
 
 </html>  
-<script src="js/menu.js?v=5"></script>
+<script src="js/menu.js?v=4"></script> 

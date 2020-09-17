@@ -84,7 +84,7 @@ jQuery(document).ready(function(){
 			}
 		});
 	});
-});		
+});
 function listar(){
 	jQuery('#tablaarea tbody').empty();
 	jQuery.ajax({
@@ -93,32 +93,14 @@ function listar(){
 		data:{param:60000},
 		dataType:'json',
 		success:function(r){
-			console.log(r);
+			console.log(r.data);
 			jQuery.each(r.data,function(k,v){
 				var fila = '<tr><td>'+v.areaid+'</td><td>'+v.descripcion+'</td><td>'+v.estado+'</td>';
 				fila += '<td><button id="'+v.areaid+'" class="btn btn-primary editar">Editar</button></td><td><button id='+v.areaid+'" class="btn btn-primary eliminar">Eliminar</button></td></tr>';
 				jQuery('#tablaarea tbody').append(fila);
 			})
-		}
 	});
 };
-/*function listarprograma(){
-	jQuery('#tablaprogramas tbody').empty();
-	jQuery.ajax({
-		type:'post',
-		url:'scripts/seguridad.php',
-		data:{param:40000},
-		dataType:'json',
-		success:function(r){
-			jQuery.each(r.data,function(k,v){
-				var fila = '<tr><td>'+v.nombre+'</td><td>'+v.link+'</td><td>'+v.padre+'</td><td>'+v.esopcion+'</td><td>'+v.orden+'</td><td>'+v.estado+'</td>';
-				fila += '<td><button id="'+v.programaid+'" class="btn btn-primary seleccionar">Seleccionar</button></td></tr>';
-				jQuery('#tablaprogramas tbody').append(fila);
-			});
-		jQuery('#modalprograma').modal('show');	
-		}
-	});
-}*/
 function ejemplo(param){
 	console.log(param);
 }

@@ -195,7 +195,7 @@
                 <select class="custom-select custom-select-lg mb-3" id="perfilid" name="perfilid" id="perfilid" onChange="listararea()">
                   <option selected>Seleccione un Perfil</option>  
                     <?php 
-                    include_once('controlador/usuarioc.php');
+                    include_once('../controlador/usuarioc.php');
                     $sResult = UsuarioC::select(" AND perfilid IN (2,3)");
                     echo $sResult;
                     ?>
@@ -203,17 +203,15 @@
               </div>
                <div class="form-group">         
                 <label for="perfilid">Areas</label>
-                <select class="custom-select custom-select-lg mb-3" id="areaid" name="areaid" id="areaid" onChange="listararea()">
+                <select hidden class="custom-select custom-select-lg mb-3" id="areaid" name="areaid" id="areaid">
                   <option selected>Seleccione un Area</option>  
                     <?php 
-                    include_once('controlador/areac.php');
-                    exit('hola');
+                    include_once('../controlador/areac.php');
                     $sResult = AreaC::select();
                     echo $sResult;
                     ?>
                 </select>
               </div>
-              <!-- Agregar elemento select hidden por defecto de areas -->
             </div>  
             <div class="modal-footer">
               <button type="button" name="grabar" class="btn btn-default" id="grabar" data-dismiss="modal" >Grabar Usuario</button>

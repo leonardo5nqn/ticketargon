@@ -91,7 +91,6 @@ class AreaC{
 		$ret = '';
 		$mysqli = Conexion::abrir();
 		$sql = "SELECT areaid, descripcion FROM area WHERE estado = 0 ";
-		exit($sql);
 		$stmt = $mysqli->prepare($sql);
 		if($stmt!==FALSE){
 			$stmt->execute();

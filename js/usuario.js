@@ -168,4 +168,6 @@ function listararea()
 {
 	//debe buscar en base de datos a traves de ajax y en un php todas las areas de la bd
 	//Retorna o llena las opciones del select area
+	$('#areaid')[0].hidden=false;
+	console.log ('$areaid');
 }
