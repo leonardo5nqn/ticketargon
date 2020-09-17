@@ -99,8 +99,9 @@ function listar(){
 				fila += '<td><button id="'+v.areaid+'" class="btn btn-primary editar">Editar</button></td><td><button id='+v.areaid+'" class="btn btn-primary eliminar">Eliminar</button></td></tr>';
 				jQuery('#tablaarea tbody').append(fila);
 			})
+		}
 	});
-};
+}
 function ejemplo(param){
 	console.log(param);
 }
