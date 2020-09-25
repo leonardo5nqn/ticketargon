@@ -5,8 +5,6 @@ class Ticket{
 	var $usuarioid;
 	var $titulo;
 	var $descripcion;
-	var $fechainicio;
-	var $fechafin;
 	var $ipservidor;
 	var $claveservidor;
 	var $prioridad;
@@ -42,18 +40,6 @@ class Ticket{
 	}
 	public function setDescripcion($descripcion){
 		$this->descripcion = $descripcion;
-	}
-	public function getFechaInicio(){
-		return $this->fechainicio;
-	}
-	public function setFechaInicio($fechainicio){
-		$this->fechainicio = $fechainicio;
-	}
-	public function getFechaFin(){
-		return $this->fechafin;
-	}
-	public function setFechaFin($fechafin){
-		$this->fechafin = $fechafin;
 	}
 	public function getIpServidor(){
 		return $this->ipservidor;

@@ -10,18 +10,7 @@ jQuery(document).ready(function(){
 		if(jQuery('#descripcion').val()==''){
 			error = true;
 			alert('Falta descripcion.');
-			jQuery('#descripcion').css('background-color','red');
 		}
-		if(jQuery('#prioridad').val()==''){
-			error = true;
-			alert('Falta el prioridad');
-			jQuery('#prioridad').css('background-color','red');
-		}
-		/*if(jQuery('#estado').val()==''){
-			error = true;
-			alert('falta el estado');
-			jQuery('#estado').css('background-color','red');
-		}*/
 		
 		if(!error){
 			var datos = {
@@ -30,8 +19,6 @@ jQuery(document).ready(function(){
 				dtitulo:jQuery('#titulo').val(),
 				ddescripcion:jQuery('#descripcion').val(),
 				dprioridad:jQuery('#prioridad').val(),
-				dfechainicio:jQuery('#fechainicio').val(),
-				dfechafin:jQuery('#fechafin').val(),
 				dipservidor:jQuery('#ipservidor').val(),
 				dclaveservidor:jQuery('#claveservidor').val(),	
 				destado:jQuery('#estado').val(),
@@ -70,8 +57,6 @@ jQuery(document).ready(function(){
 				jQuery('#dtitulo').val(r.titulo);
 				jQuery('#ddescripcion').val(r.descripcion);
 				jQuery('#dprioridad').val(r.prioridad);
-				jQuery('#dfechainicio').val(r.fechainicio);
-				jQuery('#dfechafin').val(r.fechafin);
 				jQuery('#dipservidor').val(r.ipservidor);
 				jQuery('#dclaveservidor').val(r.claveservidor);
 				jQuery('#destado').val(r.estado)
@@ -93,8 +78,6 @@ jQuery(document).ready(function(){
 				jQuery('#etitulo').val(r.titulo);
 				jQuery('#edescripcion').val(r.descripcion);
 				jQuery('#eprioridad').val(r.prioridad);
-				jQuery('#efechainicio').val(r.fechainicio);
-				jQuery('#efechafin').val(r.fechafin);
 				jQuery('#eipservidor').val(r.ipservidor);
 				jQuery('#eclaveservidor').val(r.claveservidor);
 				jQuery('#eestado').val(r.estado);
@@ -140,7 +123,7 @@ jQuery(document).ready(function(){
 		dataType:'json',
 		success:function(r){
 			jQuery.each(r.data,function(k,v){
-				var fila = '<tr><td>'+v.usuarioid+'</td><td>'+v.titulo+'</td><td>'+v.descripcion+'</td><td>'+v.prioridad+'</td><td>'+v.ipservidor+'</td><td>'+v.claveservidor+'</td><td>'+v.fechainicio+'</td>';
+				var fila = '<tr><td>'+v.usuarioid+'</td><td>'+v.titulo+'</td><td>'+v.descripcion+'</td><td>'+v.prioridad+'</td><td>'+v.ipservidor+'</td><td>'+v.claveservidor+'</td>';
 				fila += '<td><button id="'+v.ticketid+'" class="btn btn-primary editar">Editar</button></td><td><button id='+v.ticketid+'" class="btn btn-primary eliminar">Eliminar</button></td></tr>';
 				jQuery('#tablatickets tbody').append(fila);
 			})
@@ -149,4 +132,23 @@ jQuery(document).ready(function(){
 	};
 	function ejemplo(param){
 	console.log(param);
+	}
+
+
+	function mostrarserv()
+	{
+	//debe buscar en base de datos a traves de ajax y en un php todas las areas de la bd
+	//Retorna o llena las opciones del select area
+	//alert($('#perfilid').val);
+	$('#divservidor')[0].hidden=false;
+	//console.log ('$areaid');
+	//Tecnico = id 3
+	//Cliente = id 2
+	if($('#servidores').val()== 2)
+	{
+		$('#divservidor').css('display','none');
+	}
+	else{
+		$('#divservidor').css('display','inline');
+	}
 	}

@@ -125,7 +125,32 @@
 			include_once('../controlador/areac.php');
 			$areac = new AreaC();
 			$retorno = $areac->eliminar();
-			break;				
+			break;
+		case 70000:
+			include_once('../controlador/prioridadc.php');
+			$prioridadc = new PrioridadC();
+			$retorno = $prioridadc->listar();
+			break;	
+		case 70001:
+			include_once('../controlador/prioridadc.php');
+			$prioridadc = new PrioridadC();
+			$retorno = $prioridadc->add($_POST);
+			break;
+		case 70002:
+			include_once('../controlador/prioridadc.php');
+			$prioridadc = new PrioridadC();
+			$retorno = $prioridadc->editar($_POST);
+			break;	
+		case 70003:
+			include_once('../controlador/prioridadc.php');
+			$prioridadc = new PrioridadC();
+			$retorno = $prioridadc->buscar($_POST);
+			break;	
+		case 70004:
+			include_once('../controlador/prioridadc.php');
+			$prioridadc = new PrioridadC();
+			$retorno = $prioridadc->eliminar();
+			break;					
 	}
 	echo json_encode($retorno);
 ?>

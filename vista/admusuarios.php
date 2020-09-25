@@ -12,8 +12,7 @@
             <table class="table align-items-center table-flush" id="tablausuarios">
                <thead class="thead-light">
                   <th scope="col">Nombre</th>
-                  <th scope="col">Apellido</th>
-                  <th scope="col">Fecha Nacimiento</th>              
+                  <th scope="col">Apellido</th>         
                   <th scope="col">Correo</th>
                   <th scope="col">Usuario</th>
                   <th scope="col">Perfil</th>
@@ -53,10 +52,6 @@
               <input type="text" class="form-control" id="dapellido" name="dapellido">
             </div>
             <div class="form-group">
-              <label for="dfecnac">Fecha Nacimiento:</label>
-              <input type="text" class="form-control" id="dfecnac" name="dfecnac">
-            </div>
-            <div class="form-group">
               <label for="dcorreo">Correo:</label>
               <input type="text" class="form-control" id="dcorreo" name="dcorreo">
             </div>
@@ -70,7 +65,7 @@
             </div>
             <div class="form-group">
               <label for="perfil">Perfil</label>
-              <select name="dperfilid" id="dperfilid">
+              <select class="form-control" name="dperfilid" id="dperfilid">
                 <?php 
                   include_once('../controlador/usuarioc.php');
                   $usuarioc = new UsuarioC();
@@ -104,45 +99,15 @@
         </div>
         <div class="modal-body">
           <form class="form-inline" id="fusuario2">
+            <input type="hidden" id="eusuarioid" name="">
             <div class="form-group">
-              <label for="descnombre">Nombre:</label>
-              <input type="text" class="form-control" id="enombre" name="enombre">
-            </div>
-            <div class="form-group">
-              <label for="descapellido">Apellido:</label>
-              <input type="text" class="form-control" id="eapellido" name="eapellido">
-            </div>
-            <div class="form-group">
-              <label for="dfecnac">Fecha Nacimiento:</label>
-              <input type="text" class="form-control" id="efecnac" name="efecnac">
-            </div>
-            <div class="form-group">
-              <label for="dcorreo">Correo:</label>
-              <input type="text" class="form-control" id="ecorreo" name="ecorreo">
-            </div>
-            <div class="form-group">
-              <label for="descusuario">Usuario:</label>
-              <input type="text" class="form-control" id="eusuario" name="eusuario">
-            </div>
-            <div class="form-group">
-              <label for="descclave">Clave:</label>
-              <input type="text" class="form-control" id="eclave" name="eclave">
-            </div>
-            <div class="form-group">
-              <label for="perfil">Perfil</label>
-              <select name="eperfilid" id="eperfilid">
-                <?php 
-                  include_once('../controlador/usuarioc.php');
-                  $usuarioc = new UsuarioC();
-                  echo $usuarioc->select();
-                ?>
-              </select> 
+              <label for="descnombre">¿Seguro que quiere eliminar este usuario?</label>
             </div>
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger" id="eliminarusuario">Eliminar</button>
-          <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-danger" id="eliminarusuario">Si</button>
+          <button type="button" class="btn btn-outline-primary" data-dismiss="modal">No</button>
         </div>
       </div>
     </div>
@@ -174,10 +139,6 @@
                 <input class="form-control" type="text" name="apellido"  id="apellido" >      
               </div>
               <div class="form-group">
-                <label for="fecnac">Fecha Nacimiento:</label>
-                <input type="date" class="form-control" id="fecnac" name="fecnac">
-              </div>
-              <div class="form-group">
                 <label for="correo">Correo:</label>
                 <input type="text" class="form-control" id="correo" name="correo" required="">
               </div>
@@ -201,9 +162,9 @@
                     ?>
                 </select>
               </div>
-               <div class="form-group">         
-                <label for="perfilid">Areas</label>
-                <select hidden class="custom-select custom-select-lg mb-3" id="areaid" name="areaid" id="areaid">
+              <div style="display: none" class="form-group" id="divarea">         
+                <label for="areaid">Areas</label>
+                <select class="custom-select custom-select-lg mb-3" id="areaid" name="areaid" id="areaid">
                   <option selected>Seleccione un Area</option>  
                     <?php 
                     include_once('../controlador/areac.php');

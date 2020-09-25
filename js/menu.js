@@ -14,6 +14,9 @@ jQuery(document).ready(function(){
 	jQuery('#areas').on('click', function(){
 		jQuery('#contenedor').load('vista/admarea.php')
 	});
+	jQuery('#prioridades').on('click', function(){
+		jQuery('#contenedor').load('vista/admprioridad.php')
+	});
 	jQuery('#info').on('click', function(){
 		jQuery('#contenedor').load('vista/info.php')
 	});

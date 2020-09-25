@@ -92,6 +92,8 @@
           <li class="nav-item">
             <a class="nav-link " id="areas" href="#"><i class="ni ni-bullet-list-67 text-red"></i> Areas</a></li>
           <li class="nav-item">
+            <a class="nav-link " id="prioridades" href="#"><i class="ni ni-ui-04 text-red"></i> Prioridad</a></li>
+          <li class="nav-item">  
         </ul>
         <!-- Divider -->
         <hr class="my-3">

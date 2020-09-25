@@ -34,7 +34,6 @@ jQuery(document).ready(function(){
 				param:30001,
 				dnombre:jQuery('#nombre').val(),
 				dapellido:jQuery('#apellido').val(),
-				dfecnac:jQuery('#fecnac').val(),	
 				dcorreo:jQuery('#correo').val(),
 				dusuario:jQuery('#usu').val(),
 				dclave:jQuery('#clave').val(),
@@ -73,7 +72,6 @@ jQuery(document).ready(function(){
 				console.log(id);
 				jQuery('#dnombre').val(r.nombre);
 				jQuery('#dapellido').val(r.apellido);
-				jQuery('#dfecnac').val(r.fecnac);
 				jQuery('#dcorreo').val(r.correo);
 				jQuery('#dusuario').val(r.usuario);
 				jQuery('#dclave').val(r.clave);
@@ -93,14 +91,14 @@ jQuery(document).ready(function(){
 				param1:id},
 			dataType:'json',
 			success:function(r){
-				jQuery('#enombre').val(r.nombre);
+				jQuery('#eusuarioid').val(id);
+				/*jQuery('#enombre').val(r.nombre);
 				jQuery('#eapellido').val(r.apellido);
-				jQuery('#efecnac').val(r.fecnac);
 				jQuery('#ecorreo').val(r.correo);
 				jQuery('#eusuario').val(r.usuario);
 				jQuery('#eclave').val(r.clave);
 				jQuery('#eperfilid').val(r.perfilid);
-				jQuery('#eestado').val(r.estado);
+				jQuery('#eestado').val(r.estado);*/
 				jQuery('#modalusuarioeliminar').modal('show');
 			}
 		});
@@ -120,7 +118,10 @@ jQuery(document).ready(function(){
 		});
 	});
 	jQuery('#eliminarusuario').on('click', function(){
+		/*alert("hola");
 		var datos=jQuery('#fusuario2').serialize();
+		console.log(datos);*/
+		datos='id='+jQuery('#eusuarioid').val();
 		datos+='&param=30004';
 		jQuery.ajax({
 			type:'post',
@@ -143,8 +144,8 @@ jQuery(document).ready(function(){
 		dataType:'json',
 		success:function(r){
 			jQuery.each(r.data,function(k,v){
-				var fila = '<tr><td>'+v.nombre+'</td><td>'+v.apellido+'</td><td>'+v.fecnac+'</td><td>'+v.correo+'</td><td>'+v.usuario+'</td><td>'+v.perfilid+'</td>';
-				fila += '<td><button id="'+v.usuarioid+'" class="btn btn-primary editar">Editar</button></td><td><button id='+v.usuarioid+'" class="btn btn-primary eliminar">Eliminar</button></td></tr>';
+				var fila = '<tr><td>'+v.nombre+'</td><td>'+v.apellido+'</td><td>'+v.correo+'</td><td>'+v.usuario+'</td><td>'+v.perfilid+'</td>';
+				fila += '<td><button id="'+v.usuarioid+'" class="btn btn-primary editar">Editar</button></td><td><button id="'+v.usuarioid+'" class="btn btn-primary eliminar">Eliminar</button></td></tr>';
 				jQuery('#tablausuarios tbody').append(fila);
 			})
 		}
@@ -168,6 +169,16 @@ function listararea()
 {
 	//debe buscar en base de datos a traves de ajax y en un php todas las areas de la bd
 	//Retorna o llena las opciones del select area
+	//alert($('#perfilid').val);
 	$('#areaid')[0].hidden=false;
-	console.log ('$areaid');
+	//console.log ('$areaid');
+	//Tecnico = id 3
+	//Cliente = id 2
+	if($('#perfilid').val()== 2)
+	{
+		$('#divarea').css('display','none');
+	}
+	else{
+		$('#divarea').css('display','inline');
+	}
 }

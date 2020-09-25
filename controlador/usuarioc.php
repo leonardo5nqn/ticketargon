@@ -11,7 +11,7 @@ class UsuarioC{
 		$arr= array();
 		$usuarioid = $post['param1'];
 		$mysqli = Conexion::abrir();
-		$sql = "SELECT nombre, apellido, fecnac, usuario, correo, clave, perfilid, usuarioid  FROM usuario WHERE usuarioid= ?";
+		$sql = "SELECT nombre, apellido, usuario, correo, clave, perfilid, usuarioid  FROM usuario WHERE usuarioid= ?";
 		$stmt = $mysqli->prepare($sql);
 		$stmt->bind_param('i',$usuarioid);
 		$stmt->execute();
@@ -20,13 +20,12 @@ class UsuarioC{
 			while($fila=$rs->fetch_array()){
 				$arr['nombre'] = $fila[0];
 				$arr['apellido'] = $fila[1];
-				$arr['fecnac'] = $fila[2];
-				$arr['usuario'] = $fila[3];
-				$arr['correo'] = $fila[4];
-				$arr['clave'] = $fila[5];
-				$arr['perfilid'] = $fila[6];
+				$arr['usuario'] = $fila[2];
+				$arr['correo'] = $fila[3];
+				$arr['clave'] = $fila[4];
+				$arr['perfilid'] = $fila[5];
 				
-				$_SESSION['susuarioid'] = $fila[7];
+				$_SESSION['susuarioid'] = $fila[6];
 			}
 		}
 		$stmt->close();
@@ -36,7 +35,7 @@ class UsuarioC{
 		$mysqli = Conexion::abrir();
 		$arr = array();
 		$arr2 = array();
-		$sql = "SELECT nombre, apellido, fecnac, usuario, correo, clave, perfilid, usuarioid FROM usuario";
+		$sql = "SELECT u.nombre, u.apellido, u.usuario, u.correo, u.clave, p.descripcion, u.usuarioid FROM usuario u INNER JOIN perfil p ON u.perfilid=p.perfilid";
 		$stmt = $mysqli->prepare($sql);
 		$stmt->execute();
 		$rs = $stmt->get_result();
@@ -44,12 +43,11 @@ class UsuarioC{
 			while($fila=$rs->fetch_array()){
 				$arr['nombre'] = $fila[0];
 				$arr['apellido'] = $fila[1];
-				$arr['fecnac'] = $fila[2];
-				$arr['usuario'] = $fila[3];
-				$arr['correo'] = $fila[4];
-				$arr['clave'] = $fila[5];
-				$arr['perfilid'] = $fila[6];
-				$arr['usuarioid'] = $fila[7];
+				$arr['usuario'] = $fila[2];
+				$arr['correo'] = $fila[3];
+				$arr['clave'] = $fila[4];
+				$arr['perfilid'] = $fila[5];
+				$arr['usuarioid'] = $fila[6];
 				$arr2[] = $arr;
 			}
 		}
@@ -59,18 +57,17 @@ class UsuarioC{
 	public function add($post){
 		$dnombre = $post['dnombre'];
 		$dapellido = $post['dapellido'];
-		$dfecnac = $post['dfecnac'];
 		$dusuario = $post['dusuario'];
 		$dcorreo = $post['dcorreo'];
 		$dclave = $post['dclave'];	
 		$dperfilid = $post['dperfilid'];
 		$mysqli = Conexion::abrir();
 		$mysqli->set_charset("utf8");
-		$sql = "INSERT INTO usuario (nombre, apellido, fecnac, usuario, correo, clave, perfilid) VALUES (?,?,?,?,?,?,?)";
+		$sql = "INSERT INTO usuario (nombre, apellido, usuario, correo, clave, perfilid) VALUES (?,?,?,?,?,?)";
 		$stmt = $mysqli->prepare($sql);
 		if($stmt!== FALSE){			
 			$estado = 0;		
-			$stmt->bind_param('ssssssi',$dnombre,$dapellido,$dfecnac,$dusuario,$dcorreo,$dclave,$dperfilid);
+			$stmt->bind_param('sssssi',$dnombre,$dapellido,$dusuario,$dcorreo,$dclave,$dperfilid);
 			$stmt->execute();
 			$stmt->close();
 			$arr = array('success'=>true);
@@ -78,9 +75,9 @@ class UsuarioC{
 		return $arr;
 	}
 	public function eliminar(){
-		$usuarioid = $_SESSION['susuarioid'];
+		$usuarioid = $_POST['id'];
 		$mysqli = Conexion::abrir();
-		$sql = "DELETE FROM usuario WHERE usuarioid = ?";
+		$sql = "UPDATE usuario SET estado=1 WHERE usuarioid = ".$usuarioid;
 		$stmt = $mysqli->prepare($sql);
 		if($stmt!== FALSE){
 			$estado= 0;
@@ -94,24 +91,21 @@ class UsuarioC{
 		$usuarioid = $_SESSION['susuarioid'];
 		$dnombre = $post['dnombre'];
 		$dapellido = $post['dapellido'];
-		$dfecnac = $post['dfecnac'];
 		$dusuario = $post['dusuario'];
 		$dcorreo = $post['dcorreo'];
 		$dclave = $post['dclave'];
 		$dperfilid = $post['dperfilid'];
-		//$destado = $post['destado'];
 		$mysqli = Conexion::abrir();
 		$mysqli->set_charset("utf8");
 		$sql = "UPDATE usuario SET nombre = ?, ";
 		$sql .= " apellido = ?, ";
-		$sql .= " fecnac = ?, ";
 		$sql .= " usuario = ?, ";
 		$sql .= " correo = ?, ";
 		$sql .= " clave = ?, ";
 		$sql .= " perfilid = ? WHERE usuarioid = ?";
 		$stmt = $mysqli->prepare($sql);
 		if($stmt!== FALSE){						
-			$stmt->bind_param('ssssssii',$dnombre,$dapellido,$dfecnac,$dusuario,$dcorreo,$dclave,$dperfilid,$usuarioid);
+			$stmt->bind_param('sssssii',$dnombre,$dapellido,$dusuario,$dcorreo,$dclave,$dperfilid,$usuarioid);
 			$stmt->execute();
 			$stmt->close();
 		}

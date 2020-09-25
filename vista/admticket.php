@@ -1,12 +1,5 @@
 <div class="container">
 
-  <div>
-      <!-- BOTON DE AGREGAR TICKET -->
-  
-  <button class="btn btn-primary" name="addticket" type="button" id="addticket"> Agregar Ticket</button>
-  </div>
-
-
   <!-- TABLA DONDE QUEDAN LOS TICKETS REGISTRADOS -->
   <div class="container-fluid mt--7">
 
@@ -25,7 +18,6 @@
                 <th scope="col">Prioridad</th>               
                 <th scope="col">IP del Servidor</th>
                 <th scope="col">Clave Servidor</th>
-                <th scope="col">Fecha de Inicio</th>  
                 <th scope="col">Editar</th>
                 <th scope="col">Eliminar</th>
               </thead>
@@ -112,14 +104,7 @@
               <label for="dprioridad">Prioridad:</label>
               <input type="text" class="form-control" id="eprioridad" name="eprioridad">
             </div>
-            <div class="form-group">
-              <label for="dipservidor">IP del Servidor:</label>
-              <input type="text" class="form-control" id="eipservidor" name="eipservidor">
-            </div>
-            <div class="form-group">
-              <label for="dclaveservidor">Contraseña del Servidor:</label>
-              <input type="text" class="form-control" id="eclaveservidor" name="eclaveservidor">
-            </div>
+            
           </form>
         </div>
         <div class="modal-footer">
@@ -130,7 +115,10 @@
     </div>
   </div>
 
-
+   <!-- BOTON DE AGREGAR TICKET -->
+  <div>
+  <button class="btn btn-primary" name="addticket" type="button" id="addticket"> Agregar Ticket</button>
+  </div>
 
   <!-- CUADRO MODAL DE GRABAR TICKET -->
 
@@ -156,34 +144,44 @@
 
                 <div class="form-group">
                   <label for="titulo">Titulo:</label> 
-                  <input class="form-control" type="text" name="titulo"  id="titulo" >        
+                  <input class="form-control" type="text" name="titulo"  id="titulo" required="">        
                 </div>
                 <div class="form-group">
                   <label for="descripcion">Descripcion:</label> 
-                  <input class="form-control" type="text" name="descripcion"  id="descripcion" >        
+                  <input class="form-control" type="text" name="descripcion"  id="descripcion" required="">        
                 </div>
-                <div class="form-group">    
+                <div class="form-group">
                   <label for="prioridad">Prioridad</label>
-                    <select class="form-control" name="prioridad" id="prioridad">
-                      <option value="0"></option>
-                      <option value="1">Media</option>
-                      <option value="2">Alta</option>
-                      <option value="3">Critica</option>
-                    </select>    
+                  <select class="form-control" name="dprioridad" id="dprioridad">
+                  <option selected>Seleccione una Prioridad</option>  
+                    <?php 
+                      include_once('../controlador/prioridadc.php');
+                      $prioridadc = new PrioridadC();
+                      echo $prioridadc->select();
+                    ?>
+                  </select> 
                 </div>
-                <div class="form-group">
-                  <label for="ipservidor">Ip Del Servidor(opcional):</label> 
-                  <input class="form-control" type="text" name="ipservidor"  id="ipservidor" >        
+                <div class="form-group">         
+                  <label for="servidores">¿Desea agregar un servidor?</label>
+                  <select class="form-control" id="servidores" name="servidores" id="servidores" onChange="mostrarserv()">
+                    <option value="2" selected>Seleccionar</option>  
+                    <option value="1">Si</option>
+                    <option value="2">No</option>
+
+                  </select>
                 </div>
-                <div class="form-group">
-                  <label for="claveip">Contraseña Del Servidor:</label> 
-                  <input class="form-control" type="text" name="claveservidor"  id="claveservidor" >        
+                <div style="display: none" class="form-group" id="divservidor">         
+                   
+                  <div class="form-group">
+                    <label for="dipservidor">IP del Servidor:</label>
+                    <input type="text" class="form-control" id="eipservidor" name="eipservidor">
+                  </div>
+                  <div class="form-group">
+                    <label for="dclaveservidor">Contraseña del Servidor:</label>
+                    <input type="text" class="form-control" id="eclaveservidor" name="eclaveservidor">
+                  </div>
+            
                 </div>
-                
-                <input style="display:none" id="fechainicio" name="fechainicio" value="<?php echo date("Y-n-j"); ?>">
-                <input style="display:none" id="fechafin" name="fechafin" value="<?php echo date("Y-n-j"); ?>">
-              
-              </div>  
               <div class="modal-footer">
                 <button type="button" name="grabar" class="btn btn-info" id="grabar" data-dismiss="modal">Grabar Ticket</button>
                 <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cerrar</button>
@@ -193,6 +191,6 @@
       </div>
     </form> 
     
-    <script src="js/ticketcli.js?v=3"></script>
+    <script src="js/ticketcli.js?v=4"></script>
 
 </div>

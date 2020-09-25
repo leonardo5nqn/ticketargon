@@ -5,7 +5,6 @@ class Usuario{
 	var $nombre;
 	var $apellido;
 	var $correo;
-	var $fecnac;
 	var $clave;
 	var $perfil;
 	var $descripcion;
@@ -42,12 +41,6 @@ class Usuario{
 	}
 	public function setCorreo($correo){
 		$this->correo = $correo;
-	}
-	public function getFecnac(){
-		return $this->fecnac;
-	}
-	public function setFecnac($fecnac){
-		$this->fecnac = $fecnac;
 	}
 	public function getClave(){
 		return $this->clave;

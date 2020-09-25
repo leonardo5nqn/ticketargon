@@ -11,7 +11,7 @@ class TicketC{
     $arr= array();
     $ticketid = $post['param1'];
     $mysqli = Conexion::abrir();
-    $sql = "SELECT usuarioid, titulo, descripcion, prioridad, fechainicio, fechafin, ipservidor, claveservidor, ticketid FROM ticket WHERE ticketid= ?";
+    $sql = "SELECT usuarioid, titulo, descripcion, prioridad, ipservidor, claveservidor, ticketid FROM ticket WHERE ticketid= ?";
     $stmt = $mysqli->prepare($sql);
     $stmt->bind_param('i',$ticketid);
     $stmt->execute();
@@ -22,12 +22,10 @@ class TicketC{
         $arr['titulo'] = $fila[1];
         $arr['descripcion'] = $fila[2];
         $arr['prioridad'] = $fila[3];
-        $arr['fechainicio'] = $fila[4];
-        $arr['fechafin'] = $fila[5];
-        $arr['ipservidor'] = $fila[6];
-        $arr['claveservidor'] = $fila[7];        
+        $arr['ipservidor'] = $fila[4];
+        $arr['claveservidor'] = $fila[5];        
         
-        $_SESSION['sticketid'] = $fila[8];
+        $_SESSION['sticketid'] = $fila[6];
       }
     }
     $stmt->close();
@@ -37,7 +35,7 @@ class TicketC{
     $mysqli = Conexion::abrir();
     $arr = array();
     $arr2 = array();
-    $sql = "SELECT usuarioid, titulo, descripcion, prioridad, fechainicio, fechafin, ipservidor, claveservidor, ticketid FROM ticket";
+    $sql = "SELECT concat(u.nombre,' ',u.apellido), t.titulo, h.descripcion, p.descripcion, t.ipservidor, t.claveservidor, t.ticketid FROM ticket t INNER JOIN historial h ON h.ticketid=t.ticketid INNER JOIN prioridad p ON p.prioridadid=t.prioridadid INNER JOIN usuario u ON u.usuarioid= t.usuarioid";
     $stmt = $mysqli->prepare($sql);
     $stmt->execute();
     $rs = $stmt->get_result();
@@ -47,11 +45,9 @@ class TicketC{
         $arr['titulo'] = $fila[1];
         $arr['descripcion'] = $fila[2];
         $arr['prioridad'] = $fila[3];
-        $arr['fechainicio'] = $fila[4];
-        $arr['fechafin'] = $fila[5];
-        $arr['ipservidor'] = $fila[6];
-        $arr['claveservidor'] = $fila[7];        
-        $arr['ticketid'] = $fila[8];        
+        $arr['ipservidor'] = $fila[4];
+        $arr['claveservidor'] = $fila[5];        
+        $arr['ticketid'] = $fila[6];        
         $arr2[] = $arr;
       }
     }
@@ -61,19 +57,27 @@ class TicketC{
   public function add($post){
     $dusuarioid = $post['dusuarioid'];
     $dtitulo = $post['dtitulo'];
-    $ddescripcion = $post['ddescripcion'];
-    $dprioridad = $post['dprioridad'];
-    $dfechainicio = $post['dfechainicio'];
-    $dfechafin = $post['dfechafin'];
+    $dprioridad = $post['dprioridadid'];
     $dipservidor = $post['dipservidor'];
     $dclaveservidor = $post['dclaveservidor'];  
     $mysqli = Conexion::abrir();
     $mysqli->set_charset("utf8");
-    $sql = "INSERT INTO ticket (usuarioid, titulo, descripcion, prioridad, fechainicio, fechafin, ipservidor, claveservidor) VALUES (?,?,?,?,?,?,?,?)";
+    $sql = "INSERT INTO ticket (usuarioid, titulo, prioridadid, ipservidor, claveservidor) VALUES (?,?,?,?,?,?,?)";
     $stmt = $mysqli->prepare($sql);
+    //tabla historial
+    $dticketid = $stmt->insert_id;
+    $dusuarioid = $post['dusuarioid'];
+    $ddescripcion = $post['ddescripcion'];
+    $destadoid = 1;
+    $dfechahora = date("Y-m-d");
+    $mysqli = Conexion::abrir();
+    $mysqli->set_charset("utf8");
+    $sql = "INSERT INTO historial (ticketid, usuarioid, descripcion, estadoid, fechahora) VALUES (?,?,?,?,?)";
+    $stmt = $mysqli->prepare($sql);
+    //
     if($stmt!== FALSE){     
       $estado = 0;    
-      $stmt->bind_param('ississsi',$dusuarioid,$dtitulo,$ddescripcion,$dprioridad,$dfechainicio,$dfechafin,$dipservidor,$dclaveservidor);
+      $stmt->bind_param('ississsi',$dusuarioid,$dtitulo,$ddescripcion,$dprioridadid,$dipservidor,$dclaveservidor);
       $stmt->execute();
       $stmt->close();
       $arr = array('success'=>true);
@@ -99,8 +103,6 @@ class TicketC{
     $dtitulo = $post['dtitulo'];
     $ddescripcion = $post['ddescripcion'];
     $dprioridad = $post['dprioridad'];
-    $dfechainicio = $post['dfechainicio'];
-    $dfechafin = $post['dfechafin'];
     $dipservidor = $post['dipservidor'];
     $dclaveservidor = $post['dclaveservidor']; 
     $mysqli = Conexion::abrir();
@@ -109,13 +111,11 @@ class TicketC{
     $sql .= " titulo = ?, ";
     $sql .= " descripcion = ?, ";
     $sql .= " prioridad = ?, ";
-    $sql .= " fechainicio = ?, ";
-    $sql .= " fechafin = ?, ";
     $sql .= " ipservidor = ?, ";
     $sql .= " claveservidor = ? WHERE ticketid = ?";
     $stmt = $mysqli->prepare($sql);
     if($stmt!== FALSE){           
-      $stmt->bind_param('ississsii',$dusuarioid,$dtitulo,$ddescripcion,$dprioridad,$dfechainicio,$dfechafin,$dipservidor,$dclaveservidor,$ticketid);
+      $stmt->bind_param('ississsii',$dusuarioid,$dtitulo,$ddescripcion,$dprioridad,$dipservidor,$dclaveservidor,$ticketid);
       $stmt->execute();
       $stmt->close();
     }
