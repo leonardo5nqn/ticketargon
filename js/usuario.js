@@ -82,27 +82,11 @@ jQuery(document).ready(function(){
 			}
 		});
 	});
-	jQuery('#tablausuarios tbody').on('click', '.eliminar', function(){
-		var id = jQuery(this).attr('id');
-		jQuery.ajax({
-			type:'post',
-			url:'scripts/seguridad.php',
-			data:{param:30003,
-				param1:id},
-			dataType:'json',
-			success:function(r){
-				jQuery('#eusuarioid').val(id);
-				/*jQuery('#enombre').val(r.nombre);
-				jQuery('#eapellido').val(r.apellido);
-				jQuery('#ecorreo').val(r.correo);
-				jQuery('#eusuario').val(r.usuario);
-				jQuery('#eclave').val(r.clave);
-				jQuery('#eperfilid').val(r.perfilid);
-				jQuery('#eestado').val(r.estado);*/
-				jQuery('#modalusuarioeliminar').modal('show');
-			}
-		});
+	jQuery('#tablausuarios tbody').on('click', '.eliminar', function(){	
+		$('#eusuarioid').val($(this).attr('id')); //Asignamos el id a un hidden 
+		jQuery('#modalusuarioeliminar').modal('show'); //mostramos modal de confirmacion
 	});
+	
 	jQuery('#editarusuario').on('click', function(){
 		var datos=jQuery('#fusuario1').serialize();
 		datos+='&param=30002';

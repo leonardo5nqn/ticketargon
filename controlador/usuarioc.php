@@ -81,8 +81,8 @@ class UsuarioC{
 		$stmt = $mysqli->prepare($sql);
 		if($stmt!== FALSE){
 			$estado= 0;
-			$stmt->bind_param('i',$usuarioid);
-			$stmt->execute();
+			//$stmt->bind_param('i',$usuarioid);
+			//$stmt->execute();
 			$stmt->close();			
 		}
 		return;
