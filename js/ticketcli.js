@@ -1,5 +1,4 @@
 jQuery(document).ready(function(){
-	
 	listar();
 	jQuery('#addticket').on('click',function(){
 		jQuery('#ventanaticket').modal('show');		
@@ -18,7 +17,7 @@ jQuery(document).ready(function(){
 				dusuarioid:jQuery('#usuarioid').val(),
 				dtitulo:jQuery('#titulo').val(),
 				ddescripcion:jQuery('#descripcion').val(),
-				dprioridad:jQuery('#prioridad').val(),
+				dprioridadid:jQuery('#prioridad').val(),
 				dipservidor:jQuery('#ipservidor').val(),
 				dclaveservidor:jQuery('#claveservidor').val(),	
 				destado:jQuery('#estado').val(),
@@ -115,40 +114,36 @@ jQuery(document).ready(function(){
 	});
 });
 	function listar(){
-	jQuery('#tablatickets tbody').empty();
-	jQuery.ajax({
-		type:'post',
-		url:'scripts/seguridad.php',
-		data:{param:50000},
-		dataType:'json',
-		success:function(r){
-			jQuery.each(r.data,function(k,v){
-				var fila = '<tr><td>'+v.usuarioid+'</td><td>'+v.titulo+'</td><td>'+v.descripcion+'</td><td>'+v.prioridad+'</td><td>'+v.ipservidor+'</td><td>'+v.claveservidor+'</td>';
-				fila += '<td><button id="'+v.ticketid+'" class="btn btn-primary editar">Editar</button></td><td><button id='+v.ticketid+'" class="btn btn-primary eliminar">Eliminar</button></td></tr>';
-				jQuery('#tablatickets tbody').append(fila);
-			})
-		}
-	});
+		jQuery('#tablatickets tbody').empty();
+		jQuery.ajax({
+			type:'post',
+			url:'scripts/seguridad.php',
+			data:{param:50000},
+			dataType:'json',
+			success:function(r){
+					console.log(r);
+				jQuery.each(r.data,function(k,v){
+					var fila = '<tr><td>'+v.usuarioid+'</td><td>'+v.titulo+'</td><td>'+v.descripcion+'</td><td>'+v.prioridad+'</td><td>'+v.ipservidor+'</td><td>'+v.claveservidor+'</td>';
+					fila += '<td><button id="'+v.ticketid+'" class="btn btn-primary editar">Editar</button></td><td><button id='+v.ticketid+'" class="btn btn-primary eliminar">Eliminar</button></td></tr>';
+					jQuery('#tablatickets tbody').append(fila);
+				})
+			}
+		});
 	};
+	
 	function ejemplo(param){
 	console.log(param);
 	}
 
-
 	function mostrarserv()
 	{
-	//debe buscar en base de datos a traves de ajax y en un php todas las areas de la bd
-	//Retorna o llena las opciones del select area
-	//alert($('#perfilid').val);
-	$('#divservidor')[0].hidden=false;
-	//console.log ('$areaid');
-	//Tecnico = id 3
-	//Cliente = id 2
-	if($('#servidores').val()== 2)
-	{
-		$('#divservidor').css('display','none');
-	}
-	else{
-		$('#divservidor').css('display','inline');
-	}
+		$('#divservidor')[0].hidden=false;
+
+		if($('#servidores').val()== 2)
+		{
+			$('#divservidor').css('display','none');
+		}
+		else{
+			$('#divservidor').css('display','inline');
+		}
 	}

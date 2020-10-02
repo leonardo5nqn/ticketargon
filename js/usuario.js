@@ -39,6 +39,7 @@ jQuery(document).ready(function(){
 				dclave:jQuery('#clave').val(),
 				destado:jQuery('#estado').val(),
 				dperfilid:jQuery('#perfilid').val(),
+				dareaid:jQuery('#areaid').val(),
 			};
 			jQuery.ajax({
 				type:'post',
@@ -128,7 +129,7 @@ jQuery(document).ready(function(){
 		dataType:'json',
 		success:function(r){
 			jQuery.each(r.data,function(k,v){
-				var fila = '<tr><td>'+v.nombre+'</td><td>'+v.apellido+'</td><td>'+v.correo+'</td><td>'+v.usuario+'</td><td>'+v.perfilid+'</td>';
+				var fila = '<tr><td>'+v.nombre+'</td><td>'+v.apellido+'</td><td>'+v.correo+'</td><td>'+v.usuario+'</td><td>'+v.perfilid+'</td><td>'+v.areaid+'</td>';
 				fila += '<td><button id="'+v.usuarioid+'" class="btn btn-primary editar">Editar</button></td><td><button id="'+v.usuarioid+'" class="btn btn-primary eliminar">Eliminar</button></td></tr>';
 				jQuery('#tablausuarios tbody').append(fila);
 			})

@@ -11,7 +11,7 @@ class UsuarioC{
 		$arr= array();
 		$usuarioid = $post['param1'];
 		$mysqli = Conexion::abrir();
-		$sql = "SELECT nombre, apellido, usuario, correo, clave, perfilid, usuarioid  FROM usuario WHERE usuarioid= ?";
+		$sql = "SELECT nombre, apellido, usuario, correo, clave, perfilid, areaid, usuarioid FROM usuario WHERE usuarioid= ?";
 		$stmt = $mysqli->prepare($sql);
 		$stmt->bind_param('i',$usuarioid);
 		$stmt->execute();
@@ -24,8 +24,9 @@ class UsuarioC{
 				$arr['correo'] = $fila[3];
 				$arr['clave'] = $fila[4];
 				$arr['perfilid'] = $fila[5];
+				$arr['areaid'] = $fila[6];
 				
-				$_SESSION['susuarioid'] = $fila[6];
+				$_SESSION['susuarioid'] = $fila[7];
 			}
 		}
 		$stmt->close();
@@ -35,7 +36,8 @@ class UsuarioC{
 		$mysqli = Conexion::abrir();
 		$arr = array();
 		$arr2 = array();
-		$sql = "SELECT u.nombre, u.apellido, u.usuario, u.correo, u.clave, p.descripcion, u.usuarioid FROM usuario u INNER JOIN perfil p ON u.perfilid=p.perfilid";
+		$sql = "SELECT u.nombre, u.apellido, u.usuario, u.correo, u.clave, p.descripcion, a.descripcion, u.usuarioid FROM usuario u INNER JOIN perfil p ON u.perfilid=p.perfilid
+		INNER JOIN area a ON u.areaid=a.areaid WHERE u.estado=0";
 		$stmt = $mysqli->prepare($sql);
 		$stmt->execute();
 		$rs = $stmt->get_result();
@@ -47,7 +49,9 @@ class UsuarioC{
 				$arr['correo'] = $fila[3];
 				$arr['clave'] = $fila[4];
 				$arr['perfilid'] = $fila[5];
-				$arr['usuarioid'] = $fila[6];
+				$arr['areaid'] = $fila[6];
+				$arr['usuarioid'] = $fila[7];
+
 				$arr2[] = $arr;
 			}
 		}
@@ -59,15 +63,16 @@ class UsuarioC{
 		$dapellido = $post['dapellido'];
 		$dusuario = $post['dusuario'];
 		$dcorreo = $post['dcorreo'];
-		$dclave = $post['dclave'];	
+		$dclave = md5($post['dclave']);	
 		$dperfilid = $post['dperfilid'];
+		$dareaid = $post['dperfilid']==2? 1: $post['dareaid'];
 		$mysqli = Conexion::abrir();
 		$mysqli->set_charset("utf8");
-		$sql = "INSERT INTO usuario (nombre, apellido, usuario, correo, clave, perfilid) VALUES (?,?,?,?,?,?)";
+		$sql = "INSERT INTO usuario (nombre, apellido, usuario, correo, clave, perfilid, areaid, estado) VALUES ('".$dnombre."','".$dapellido."','".$dusuario."','".$dcorreo."','".$dclave."',".$dperfilid.",".$dareaid.", 0)";
 		$stmt = $mysqli->prepare($sql);
 		if($stmt!== FALSE){			
 			$estado = 0;		
-			$stmt->bind_param('sssssi',$dnombre,$dapellido,$dusuario,$dcorreo,$dclave,$dperfilid);
+			//$stmt->bind_param('sssssii',$dnombre,$dapellido,$dusuario,$dcorreo,$dclave,$dperfilid,$dareaid);
 			$stmt->execute();
 			$stmt->close();
 			$arr = array('success'=>true);
@@ -82,8 +87,11 @@ class UsuarioC{
 		if($stmt!== FALSE){
 			$estado= 0;
 			//$stmt->bind_param('i',$usuarioid);
-			//$stmt->execute();
+			$stmt->execute();
 			$stmt->close();			
+		}
+		else {
+			return 'hola';
 		}
 		return;
 	}
@@ -102,10 +110,11 @@ class UsuarioC{
 		$sql .= " usuario = ?, ";
 		$sql .= " correo = ?, ";
 		$sql .= " clave = ?, ";
-		$sql .= " perfilid = ? WHERE usuarioid = ?";
+		$sql .= " perfilid = ?,"; 
+		$sql .= " areaid = ? WHERE usuarioid = ?";
 		$stmt = $mysqli->prepare($sql);
 		if($stmt!== FALSE){						
-			$stmt->bind_param('sssssii',$dnombre,$dapellido,$dusuario,$dcorreo,$dclave,$dperfilid,$usuarioid);
+			$stmt->bind_param('sssssiii',$dnombre,$dapellido,$dusuario,$dcorreo,$dclave,$dperfilid,$areaid,$usuarioid);
 			$stmt->execute();
 			$stmt->close();
 		}
@@ -162,6 +171,32 @@ class UsuarioC{
 		}
 
 		return $usuario;
+	}
+	public function validarpass($pass){
+		$error=false;
+		$mysqli = Conexion::abrir();
+		$sql = "SELECT * FROM usuario WHERE clave='".md5($pass)."'and usuarioid=".$_SESSION['UserSession'][0]['Id']; 
+		$stmt = $mysqli->prepare($sql);
+		if($stmt!==FALSE){
+			$stmt->execute();
+			$rs = $stmt->get_result();
+			if($rs->num_rows>0){			
+				$error=true;
+
+			}
+		}
+		return $error;	
+	}
+	public function actualizarpass($pass){
+		$error=false;
+		$mysqli = Conexion::abrir();
+		$sql = "UPDATE usuario SET clave='".md5($pass)."' WHERE usuarioid=".$_SESSION['UserSession'][0]['Id']; 
+		$stmt = $mysqli->prepare($sql);
+		if($stmt!==FALSE){
+			$stmt->execute();
+			$error=true;
+		}
+		return $error;	
 	}
 }
 ?>

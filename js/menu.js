@@ -17,6 +17,9 @@ jQuery(document).ready(function(){
 	jQuery('#prioridades').on('click', function(){
 		jQuery('#contenedor').load('vista/admprioridad.php')
 	});
+	jQuery('#pass').on('click', function(){
+		jQuery('#contenedor').load('vista/admpass.php')
+	});
 	jQuery('#info').on('click', function(){
 		jQuery('#contenedor').load('vista/info.php')
 	});

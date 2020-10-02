@@ -152,7 +152,7 @@
                 </div>
                 <div class="form-group">
                   <label for="prioridad">Prioridad</label>
-                  <select class="form-control" name="dprioridad" id="dprioridad">
+                  <select class="form-control" name="prioridad" id="prioridad">
                   <option selected>Seleccione una Prioridad</option>  
                     <?php 
                       include_once('../controlador/prioridadc.php');
@@ -173,12 +173,12 @@
                 <div style="display: none" class="form-group" id="divservidor">         
                    
                   <div class="form-group">
-                    <label for="dipservidor">IP del Servidor:</label>
-                    <input type="text" class="form-control" id="eipservidor" name="eipservidor">
+                    <label for="ipservidor">IP del Servidor:</label>
+                    <input type="text" class="form-control" id="ipservidor" name="ipservidor">
                   </div>
                   <div class="form-group">
-                    <label for="dclaveservidor">Contraseña del Servidor:</label>
-                    <input type="text" class="form-control" id="eclaveservidor" name="eclaveservidor">
+                    <label for="claveservidor">Contraseña del Servidor:</label>
+                    <input type="text" class="form-control" id="claveservidor" name="claveservidor">
                   </div>
             
                 </div>
@@ -191,6 +191,6 @@
       </div>
     </form> 
     
-    <script src="js/ticketcli.js?v=4"></script>
+    <script src="js/ticketcli.js?v=1"></script>
 
 </div>

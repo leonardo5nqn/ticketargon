@@ -69,7 +69,7 @@
           </div>
         </div>
         <!-- Form -->
-        <form class="mt-4 mb-3 d-md-none">
+        <!--<form class="mt-4 mb-3 d-md-none">
           <div class="input-group input-group-rounded input-group-merge">
             <input type="search" class="form-control form-control-rounded form-control-prepended" placeholder="Search" aria-label="Search">
             <div class="input-group-prepend">
@@ -78,7 +78,7 @@
               </div>
             </div>
           </div>
-        </form>
+        </form>-->
         <!-- Navigation -->
         <ul class="navbar-nav">
           <li class="nav-item  active ">
@@ -125,9 +125,9 @@
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
       <div class="container-fluid">
         <!-- Brand -->
-        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="./index.html">Dashboard</a>
+        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="./index.php">Administrador</a>
         <!-- Form -->
-        <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+        <!--<form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
           <div class="form-group mb-0">
             <div class="input-group input-group-alternative">
               <div class="input-group-prepend">
@@ -136,17 +136,17 @@
               <input class="form-control" placeholder="Search" type="text">
             </div>
           </div>
-        </form>
+        </form>-->
         <!-- User -->
         <ul class="navbar-nav align-items-center d-none d-md-flex">
           <li class="nav-item dropdown">
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="media align-items-center">
                 <span class="avatar avatar-sm rounded-circle">
-                  <img alt="Image placeholder" src="./img/theme/team-4-800x800.jpg">
+                  <img alt="Image placeholder" src="./img/theme/iconuser.jpg">
                 </span>
                 <div class="media-body ml-2 d-none d-lg-block">
-                  <span class="mb-0 text-sm  font-weight-bold">Jessica Jones</span>
+                  <span class="mb-0 text-sm  font-weight-bold"><?php echo $_SESSION['UserSession'][0]['Nombre']." ".$_SESSION['UserSession'][0]['Apellido']; ?></span>
                 </div>
               </div>
             </a>
@@ -154,13 +154,9 @@
               <div class=" dropdown-header noti-title">
                 <h6 class="text-overflow m-0">Bienvenido!</h6>
               </div>
-              <a href="./vista/profile.html" class="dropdown-item">
-                <i class="ni ni-single-02"></i>
-                <span>Mi Perfil</span>
-              </a>
-              <a href="./vista/profile.html" class="dropdown-item">
+              <a id="pass" href="./vista/admpass.php" class="dropdown-item">
                 <i class="ni ni-settings-gear-65"></i>
-                <span>Configuracion</span>
+                <span>Cambiar Contraseña</span>
               </a>
               <div class="dropdown-divider"></div>
                 <a class="dropdown-item" id="salir" href="./login/cerrar.php">
@@ -288,4 +284,4 @@
 </body>
 
 </html>  
-<script src="js/menu.js?v=5"></script>
+<script src="js/menu.js?v=1"></script>

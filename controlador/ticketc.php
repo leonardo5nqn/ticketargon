@@ -55,32 +55,41 @@ class TicketC{
     return array('data'=>$arr2);
   }
   public function add($post){
-    $dusuarioid = $post['dusuarioid'];
-    $dtitulo = $post['dtitulo'];
-    $dprioridad = $post['dprioridadid'];
-    $dipservidor = $post['dipservidor'];
-    $dclaveservidor = $post['dclaveservidor'];  
-    $mysqli = Conexion::abrir();
-    $mysqli->set_charset("utf8");
-    $sql = "INSERT INTO ticket (usuarioid, titulo, prioridadid, ipservidor, claveservidor) VALUES (?,?,?,?,?,?,?)";
-    $stmt = $mysqli->prepare($sql);
-    //tabla historial
-    $dticketid = $stmt->insert_id;
-    $dusuarioid = $post['dusuarioid'];
-    $ddescripcion = $post['ddescripcion'];
-    $destadoid = 1;
-    $dfechahora = date("Y-m-d");
-    $mysqli = Conexion::abrir();
-    $mysqli->set_charset("utf8");
-    $sql = "INSERT INTO historial (ticketid, usuarioid, descripcion, estadoid, fechahora) VALUES (?,?,?,?,?)";
-    $stmt = $mysqli->prepare($sql);
-    //
-    if($stmt!== FALSE){     
-      $estado = 0;    
-      $stmt->bind_param('ississsi',$dusuarioid,$dtitulo,$ddescripcion,$dprioridadid,$dipservidor,$dclaveservidor);
+    $arr=array('success'=>false);
+    try {
+      $dusuarioid = $_SESSION['UserSession'][0]['Id'];
+      $dtitulo = $post['dtitulo'];
+      $dprioridad = $post['dprioridadid'];
+      $dipservidor = $post['dipservidor'];
+      $dclaveservidor = $post['dclaveservidor'];  
+      $mysqli = Conexion::abrir();
+      $mysqli->set_charset("utf8");
+      $sql = "INSERT INTO ticket (usuarioid, titulo, prioridadid, ipservidor, claveservidor) VALUES (".$dusuarioid.",'".$dtitulo."',".$dprioridad.",'".$dipservidor."',".$dclaveservidor.")";
+      $stmt = $mysqli->prepare($sql);
       $stmt->execute();
-      $stmt->close();
-      $arr = array('success'=>true);
+      
+      //tabla historial
+      $dticketid = $stmt->insert_id;
+      $dusuarioid = $_SESSION['UserSession'][0]['Id'];
+      $ddescripcion = $post['ddescripcion'];
+      $destadoid = 1;
+      $dfechahora = date("Y-m-d");
+      $mysqli = Conexion::abrir();
+      $mysqli->set_charset("utf8");
+      $sql = "INSERT INTO historial (ticketid, usuarioid, descripcion, estadoid, fechahora) VALUES (".$dticketid.",".$dusuarioid.",'".$ddescripcion."',".$destadoid.",'".$dfechahora."')";
+      $stmt2 = $mysqli->prepare($sql);
+      $stmt2->execute();
+      //
+      
+      if($stmt!== FALSE){     
+        $estado = 0;    
+        //$stmt->bind_param('ississsi',$dusuarioid,$dtitulo,$ddescripcion,$dprioridadid,$dipservidor,$dclaveservidor);
+        $stmt->close();
+        $arr = array('success'=>true);
+      }
+      
+    } catch (Exception $e) {
+      return $e;
     }
     return $arr;
   }

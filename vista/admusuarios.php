@@ -16,6 +16,7 @@
                   <th scope="col">Correo</th>
                   <th scope="col">Usuario</th>
                   <th scope="col">Perfil</th>
+                  <th scope="col">Area</th>
                   <th scope="col">Editar</th>
                   <th scope="col">Eliminar</th>
                 </thead>
@@ -31,7 +32,7 @@
 
   <div id="modalusuario" class="modal fade" role="dialog">
     
-    <div class="modal-dialog  modal-lg">
+    <div class="modal-dialog">
 
       <!-- Modal content-->
       <div class="modal-content">
@@ -44,7 +45,7 @@
         <div class="modal-body">
           <form class="form-inline" id="fusuario1">
             <div class="form-group">
-              <label for="descnombre">Nombre:</label>
+              <label for="descnombre">Nombre </label>
               <input type="text" class="form-control" id="dnombre" name="dnombre">
             </div>
             <div class="form-group">

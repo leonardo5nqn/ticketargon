@@ -1,4 +1,10 @@
+<?php
+include_once('../controlador/usuarioc.php');
+include_once('../modelo/usuario.php');
+?>
+
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -53,8 +59,8 @@
         <div class="header-body text-center mb-7">
           <div class="row justify-content-center">
             <div class="col-lg-5 col-md-6">
-              <h1 class="text-white">¡ Bienvenido a Systickets !</h1>
-              <p class="text-lead text-light">Este es nuestro sistema de inicio de sesion, por favor complete los campos.</p>
+              <h1 class="text-white">¡ Hola <?php echo $_SESSION['UserSession'][0]['Nombre']." ".$_SESSION['UserSession'][0]['Apellido']; ?> !</h1>
+              <p class="text-lead text-light">Completa los siguentes campos para realizar el cambio de contraseña.</p>
             </div>
           </div>
         </div>
@@ -71,30 +77,39 @@
         <div class="col-lg-5 col-md-7">
           <div class="card bg-secondary shadow border-0">
             <div class="card-body px-lg-5 py-lg-5">
-              <form role="form" id="formulario" method="post" action="../login/verificar.php" >
+              <form role="form" id="formulario" method="post" action="../login/cambiopass.php" >
                 <?php 
-      			      if(isset($_GET['error'])){
-      			      	echo '<div align="center" class="alert alert-info">DATOS NO VALIDOS !</div>';
-      			       }
-      			    ?>
-                <div class="form-group mb-3">
+                  if(isset($_GET['mensaje'])){
+                    echo '<div align="center" class="alert alert-info">'.$_GET['mensaje'].'</div>';
+                  }
+                ?>
+                <div class="form-group">
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
-                    <input class="form-control" id="usuario" name="usuario" placeholder="Usuario" required="">
-                      </div>
+                      <input type="password" class="form-control" id="clave" name="claveactual" placeholder="Contraseña Actual" required="">
+                  </div>
                 </div>
                 <div class="form-group">
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
-                    <input type="password" class="form-control" id="clave" name="clave" placeholder="Contraseña" required="">
+                      <input type="password" class="form-control" id="clave" name="clavenueva" placeholder="Contraseña Nueva" required="">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                    </div>
+                      <input type="password" class="form-control" id="clave" name="clavenueva2" placeholder="Confirmar Contraseña" required="">
                   </div>
                 </div>
                 <div class="text-center">
-                  <button class="btn btn-primary my-4" type="submit" name="aceptar" value="Aceptar" >Iniciar Sesion</button>
+                  <a class="btn btn-dark" href="../index.php">Cancelar</a>
+                  <button class="btn btn-primary my-4" type="submit">Confirmar cambio</button>
                 </div>
               </form>
             </div>
@@ -109,23 +124,6 @@
             <div class="copyright text-center text-xl-left text-muted">
               © 2020 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank">Systickets</a>
             </div>
-          <!--html</div>
-          <div class="col-xl-6">
-            <ul class="nav nav-footer justify-content-center justify-content-xl-end">
-              <li class="nav-item">
-                <a href="https://www.creative-tim.com" class="nav-link" target="_blank">Creative Tim</a>
-              </li>
-              <li class="nav-item">
-                <a href="https://www.creative-tim.com/presentation" class="nav-link" target="_blank">About Us</a>
-              </li>
-              <li class="nav-item">
-                <a href="http://blog.creative-tim.com" class="nav-link" target="_blank">Blog</a>
-              </li>
-              <li class="nav-item">
-                <a href="https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md" class="nav-link" target="_blank">MIT License</a>
-              </li>
-            </ul>
-          </div>-->
         </div>
       </div>
     </footer>
