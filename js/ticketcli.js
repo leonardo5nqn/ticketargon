@@ -121,7 +121,7 @@ jQuery(document).ready(function(){
 			data:{param:50000},
 			dataType:'json',
 			success:function(r){
-					console.log(r);
+				console.log(r);
 				jQuery.each(r.data,function(k,v){
 					var fila = '<tr><td>'+v.usuarioid+'</td><td>'+v.titulo+'</td><td>'+v.descripcion+'</td><td>'+v.prioridad+'</td><td>'+v.ipservidor+'</td><td>'+v.claveservidor+'</td>';
 					fila += '<td><button id="'+v.ticketid+'" class="btn btn-primary editar">Editar</button></td><td><button id='+v.ticketid+'" class="btn btn-primary eliminar">Eliminar</button></td></tr>';
