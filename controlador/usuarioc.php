@@ -1,4 +1,6 @@
 <?php
+date_default_timezone_set('America/Argentina/Buenos_Aires');
+
 include_once('conexion.php');
 include_once('perfilc.php');
 
@@ -86,12 +88,8 @@ class UsuarioC{
 		$stmt = $mysqli->prepare($sql);
 		if($stmt!== FALSE){
 			$estado= 0;
-			//$stmt->bind_param('i',$usuarioid);
 			$stmt->execute();
 			$stmt->close();			
-		}
-		else {
-			return 'hola';
 		}
 		return;
 	}
@@ -198,5 +196,25 @@ class UsuarioC{
 		}
 		return $error;	
 	}
+	public function traerarea($post){
+		$arr= array();
+		$areaid = $post['param1'];
+		$mysqli = Conexion::abrir();
+		$sql = "SELECT nombre, apellido, usuarioid FROM usuario WHERE areaid= ".$areaid;
+		$stmt = $mysqli->prepare($sql);
+		$stmt->execute();
+		$rs = $stmt->get_result();
+		if($rs->num_rows>0){
+			while($fila=$rs->fetch_array()){
+				$arr['nombre'] = $fila[0];
+				$arr['apellido'] = $fila[1];
+				$arr['usuarioid'] = $fila[2];
+				$arr2[] = $arr;
+			}
+		}
+		$stmt->close();
+		return array('data'=>$arr2);	
+	}
+
 }
 ?>

@@ -1,5 +1,6 @@
 <?php
 session_start();
-unset($_SESSION['UserSesion']);
-header("Location: ../vista/login.php");
+//unset($_SESSION['UserSesion']);
+session_destroy();
+header("Location: ../index.php");
 ?>

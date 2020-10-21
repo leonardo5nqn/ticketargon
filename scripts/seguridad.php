@@ -51,6 +51,11 @@
 			$usuarioc = new UsuarioC();
 			$retorno = $usuarioc->eliminar();
 			break;
+		case 30005:
+			include_once('../controlador/usuarioc.php');
+			$usuarioc = new UsuarioC();
+			$retorno = $usuarioc->traerarea($_POST);
+			break;
 		case 40000:
 			include_once('../controlador/programac.php');
 			$programac = new ProgramaC();
@@ -126,6 +131,11 @@
 			$areac = new AreaC();
 			$retorno = $areac->eliminar();
 			break;
+		case 60005:
+			include_once('../controlador/areac.php');
+			$areac = new AreaC();
+			$retorno = $areac->asignar($_POST);
+			break;	
 		case 70000:
 			include_once('../controlador/prioridadc.php');
 			$prioridadc = new PrioridadC();
@@ -150,7 +160,22 @@
 			include_once('../controlador/prioridadc.php');
 			$prioridadc = new PrioridadC();
 			$retorno = $prioridadc->eliminar();
-			break;					
+			break;	
+		case 80000:
+			include_once('../controlador/generalc.php');
+			$generalc = new GeneralC();
+			$retorno = $generalc->buscar();
+			break;
+		case 90000:
+			include_once('../controlador/historialc.php');
+			$historialc = new HistorialC();
+			$retorno = $historialc->buscar($_POST);
+			break;
+		case 90001:
+			include_once('../controlador/historialc.php');
+			$historialc = new HistorialC();
+			$retorno = $historialc->add($_POST);
+			break;									
 	}
 	echo json_encode($retorno);
 ?>

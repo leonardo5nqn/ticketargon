@@ -103,9 +103,6 @@ jQuery(document).ready(function(){
 		});
 	});
 	jQuery('#eliminarusuario').on('click', function(){
-		/*alert("hola");
-		var datos=jQuery('#fusuario2').serialize();
-		console.log(datos);*/
 		datos='id='+jQuery('#eusuarioid').val();
 		datos+='&param=30004';
 		jQuery.ajax({

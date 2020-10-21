@@ -31,60 +31,61 @@
   <!-- CUADRO MODAL DE EDITAR EL USUARIO -->
 
   <div id="modalusuario" class="modal fade" role="dialog">
+    <form id="fusuario1">
     
-    <div class="modal-dialog">
+      <div class="modal-dialog">
 
-      <!-- Modal content-->
-      <div class="modal-content">
-        
-        <div class="modal-header">
-          <h4 class="modal-title ">Editar datos del usuario</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        
-        <div class="modal-body">
-          <form class="form-inline" id="fusuario1">
-            <div class="form-group">
-              <label for="descnombre">Nombre </label>
-              <input type="text" class="form-control" id="dnombre" name="dnombre">
+        <!-- Modal content-->
+        <div class="modal-content">
+          
+          <div class="modal-header">
+            <h4 class="modal-title ">Editar datos del usuario</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          
+          <div class="modal-body">
+              
+              <div class="form-group">
+                <label for="descnombre">Nombre</label>
+                <input type="text" class="form-control" id="dnombre" name="dnombre">
+              </div>
+              <div class="form-group">
+                <label for="descapellido">Apellido</label>
+                <input type="text" class="form-control" id="dapellido" name="dapellido">
+              </div>
+              <div class="form-group">
+                <label for="dcorreo">Correo</label>
+                <input type="text" class="form-control" id="dcorreo" name="dcorreo">
+              </div>
+              <div class="form-group">
+                <label for="descusuario">Usuario</label>
+                <input type="text" class="form-control" id="dusuario" name="dusuario">
+              </div>
+              <div class="form-group">
+                <label for="descclave">Clave</label>
+                <input type="text" class="form-control" id="dclave" name="dclave">
+              </div>
+              <div class="form-group">
+                <label for="perfil">Perfil</label>
+                <select class="form-control" name="dperfilid" id="dperfilid">
+                  <?php 
+                    include_once('../controlador/usuarioc.php');
+                    $usuarioc = new UsuarioC();
+                    echo $usuarioc->select();
+                  ?>
+                </select> 
+              </div>
+
+          </div>
+          <div class="modal-footer">
+            <div>
+              <button type="button" class="btn btn-info" id="editarusuario">Grabar</button>
+              <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cerrar</button>
             </div>
-            <div class="form-group">
-              <label for="descapellido">Apellido:</label>
-              <input type="text" class="form-control" id="dapellido" name="dapellido">
-            </div>
-            <div class="form-group">
-              <label for="dcorreo">Correo:</label>
-              <input type="text" class="form-control" id="dcorreo" name="dcorreo">
-            </div>
-            <div class="form-group">
-              <label for="descusuario">Usuario:</label>
-              <input type="text" class="form-control" id="dusuario" name="dusuario">
-            </div>
-            <div class="form-group">
-              <label for="descclave">Clave:</label>
-              <input type="text" class="form-control" id="dclave" name="dclave">
-            </div>
-            <div class="form-group">
-              <label for="perfil">Perfil</label>
-              <select class="form-control" name="dperfilid" id="dperfilid">
-                <?php 
-                  include_once('../controlador/usuarioc.php');
-                  $usuarioc = new UsuarioC();
-                  echo $usuarioc->select();
-                ?>
-              </select> 
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <div>
-            <button type="button" class="btn btn-info" id="editarusuario">Grabar</button>
-            <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cerrar</button>
           </div>
         </div>
-      
       </div>
-    </div>
+    </form>  
   </div>
 
   <!-- CUADRO MODAL DE ELIMINAR USUARIO -->
@@ -140,7 +141,7 @@
                 <input class="form-control" type="text" name="apellido"  id="apellido" >      
               </div>
               <div class="form-group">
-                <label for="correo">Correo:</label>
+                <label for="correo">Correo</label>
                 <input type="text" class="form-control" id="correo" name="correo" required="">
               </div>
               <div class="form-group">
@@ -176,7 +177,7 @@
               </div>
             </div>  
             <div class="modal-footer">
-              <button type="button" name="grabar" class="btn btn-default" id="grabar" data-dismiss="modal" >Grabar Usuario</button>
+              <button type="button" name="grabar" class="btn btn-info" id="grabar" data-dismiss="modal" >Grabar Usuario</button>
               <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cerrar</button>
             </div>     
        

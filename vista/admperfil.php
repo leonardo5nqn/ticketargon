@@ -28,31 +28,30 @@
 
   <!-- CUADRO MODAL DE EDITAR PERFILES -->
 
-  <div id="modalperfil" class="modal fade" role="dialog">
-    <div class="modal-dialog">
+  <form id="formperfil">
+    <div id="modalperfil" class="modal fade" role="dialog">
+      <div class="modal-dialog">
 
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title ">Datos del Perfil</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        <div class="modal-body">
-            <form class="form-inline" id="formperfil">
-              <div class="form-group">
-              <label for="descperfil">Descripción:</label>
-                <input type="text" class="form-control" id="descperfil" name="descperfil">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title ">Datos del Perfil</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
-        </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-info" id="editarperfil">Editar</button>
-          <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cerrar</button>
+          <div class="modal-body">
+              <div class="form-group">
+                <label for="descperfil">Descripción</label>
+                <input type="text" class="form-control" id="descperfil" name="descperfil">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-info" id="editarperfil">Editar</button>
+            <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cerrar</button>
+          </div>
         </div>
       </div>
-
     </div>
-  </div>
+  </form>
 
   <!-- CUADRO MODAL DE ELIMINAR PERFILES -->
 
@@ -101,7 +100,7 @@
           <div class="modal-body">
             <form id="formperfildesc" style="display: none;">
               <label for="descripcion">Descripción</label>
-              <input type="text" name="descripcion"  id="descripcion" value="">
+              <input type="text" class="form-control" name="descripcion"  id="descripcion" value="">
             </form>
           </div>
           <div class="modal-footer">

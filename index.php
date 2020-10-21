@@ -1,5 +1,4 @@
 <?php
-
 //include('controlador/validar.php');
 include_once('controlador/usuarioc.php');
 include_once('modelo/usuario.php');
@@ -30,24 +29,27 @@ include_once('modelo/usuario.php');
     <div id="menu">
   
          <?php 
+        //Usuario Administrador
         if (isset($_SESSION['UserSession'][0]['PerfilId']) && $_SESSION['UserSession'][0]['PerfilId']=='1' ) {
           include('vista/menuadmin.php');
+        }else{
+            //Usuario Cliente
+            if (isset($_SESSION['UserSession'][0]['PerfilId']) && $_SESSION['UserSession'][0]['PerfilId']=='2' ) {
+              include('vista/menucliente.php');
+          }else{
+            //Usuario Tecnico
+              if (isset($_SESSION['UserSession'][0]['PerfilId']) && $_SESSION['UserSession'][0]['PerfilId']=='3' ) {
+                include('vista/menutecnico.php');
+              }
+              else  {
+                include('vista/home.php');
+              }    
+          }  
         }
-        if (isset($_SESSION['UserSession'][0]['PerfilId']) && $_SESSION['UserSession'][0]['PerfilId']=='2' ) {
-          include('vista/menucliente.php');
-        }
-        if (isset($_SESSION['UserSession'][0]['PerfilId']) && $_SESSION['UserSession'][0]['PerfilId']=='3' ) {
-          include('vista/menutecnico.php');
-        }
-
+        
         ?>
 
   </div>
 
-  <div id="contenedor">
 
-  </div>
-  
- 
-  
 </html>

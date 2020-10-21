@@ -23,4 +23,24 @@ jQuery(document).ready(function(){
 	jQuery('#info').on('click', function(){
 		jQuery('#contenedor').load('vista/info.php')
 	});
+
+	dashboard();
+
 });
+
+function dashboard(){
+
+		jQuery.ajax({
+			async:true,
+			type:'post',
+			url:'scripts/seguridad.php',
+			data:{param:80000},
+			dataType:'json',
+			success:function(r){
+				jQuery('#cantticket').html(r.cantticket);
+				jQuery('#totalsinasig').html(r.cantasignado);
+				jQuery('#totalprioalta').html(r.cantalta);
+				jQuery('#totaluser').html(r.cantuser);
+			}
+		});
+}

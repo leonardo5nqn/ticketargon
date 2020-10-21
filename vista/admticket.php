@@ -18,6 +18,9 @@
                 <th scope="col">Prioridad</th>               
                 <th scope="col">IP del Servidor</th>
                 <th scope="col">Clave Servidor</th>
+                <th scope="col">Area</th>
+                <th scope="col">Asignar</th>
+                <th scope="col">Historial</th>
                 <th scope="col">Editar</th>
                 <th scope="col">Eliminar</th>
               </thead>
@@ -30,9 +33,108 @@
     </div>
   </div>  
 
+  <!-- CUADRO MODAL DE ASIGNAR EL TICKET -->
+
+  <div id="modalarea" class="modal fade" role="dialog">
+    <form id="fticketarea">
+    
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+              
+        <div class="modal-header">
+          <h4 class="modal-title ">Asignar</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+              
+          <div class="modal-body">
+                <input type="hidden" name="aticketid"  id="aticketid">            
+              <div class="form-group">
+                <label for="aarea">Area</label>
+                  <select class="form-control" name="aarea" id="aarea" onChange="listaruser()" required="">
+                    <?php 
+                      include_once('../controlador/areac.php');
+                      $areac = new AreaC();
+                      echo $areac->select();
+                    ?>
+                  </select> 
+              </div>
+              <div class="form-group">
+                <label for="atecnico">Asignar un Tecnico</label>
+                  <select class="form-control" name="atecnico" id="atecnico">
+                    
+
+                  </select> 
+              </div>
+          </div>
+          <div class="modal-footer">
+            <div>
+              <button type="button" class="btn btn-info" id="asignarticket">Grabar</button>
+              <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cerrar</button>
+            </div>
+          </div>    
+      </div>
+    </div>
+  </form>  
+  </div>
+
+  <!-- CUADRO MODAL DEL HISTORIAL EL TICKET -->
+
+  <div id="modalhistorial" class="modal fade" role="dialog">
+    
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+              
+        <div class="modal-header">
+          <h4 class="modal-title ">Historial</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+              
+          <div class="modal-body">
+            <form id="ftickethistorial">
+              
+              <input type="hidden" name="hticketid"  id="hticketid">            
+              <div class="form-group">
+                <label for="aestado">Estado</label>
+                  <select class="form-control" name="hestado" id="hestado" required="">
+                    <?php 
+                      include_once('../controlador/estadoc.php');
+                      $estadoc = new EstadoC();
+                      echo $estadoc->select();
+                    ?>
+                  </select> 
+              </div>
+              <div class="form-group">
+                <label for="hdescripcion">Descripcion</label>
+                <textarea class="form-control" rows="5" cols="50" name="hdescripcion">
+                
+                </textarea>  
+                    
+              </div>
+              <div>
+                <button type="button" class="btn btn-info" id="guardarhistorial">Grabar</button>
+                <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cerrar</button>
+              </div>
+            </form>  
+            <div class="form-group" id="tablahistorial">
+            
+            </div>
+          </div>
+          
+        <div class="modal-footer">
+          
+        </div>    
+      </div>
+    </div>
+  </div>
+
   <!-- CUADRO MODAL DE EDITAR EL TICKET -->
 
   <div id="modalticket" class="modal fade" role="dialog">
+    <form id="fticket1">
     
     <div class="modal-dialog">
 
@@ -45,28 +147,34 @@
         </div>
               
           <div class="modal-body">
-            <form class="form-inline" id="fticket1">
               <div class="form-group">
-                <label for="dtitulo">Titulo:</label>
+                <label for="dtitulo">Titulo</label>
+                <input type="hidden" name="dticketid"  id="dticketid">   
                 <input type="text" class="form-control" id="dtitulo" name="dtitulo">  
               </div>            
               <div class="form-group">
-                <label for="ddescripcion">Descripcion:</label>
+                <label for="ddescripcion">Descripcion</label>
                 <input type="text" class="form-control" id="ddescripcion" name="ddescripcion">
               </div>
               <div class="form-group">
-                <label for="dprioridad">Prioridad:</label>
-                <input type="text" class="form-control" id="dprioridad" name="dprioridad">
+                <label for="dprioridad">Prioridad</label>
+                  <select class="form-control" name="dprioridad" id="dprioridad">
+                  <option selected>Seleccione una Prioridad</option>  
+                    <?php 
+                      include_once('../controlador/prioridadc.php');
+                      $prioridadc = new PrioridadC();
+                      echo $prioridadc->select();
+                    ?>
+                  </select> 
               </div>
               <div class="form-group">
-                <label for="dipservidor">IP del Servidor:</label>
+                <label for="dipservidor">IP del Servidor</label>
                 <input type="text" class="form-control" id="dipservidor" name="dipservidor">
               </div>
               <div class="form-group">
-                <label for="dclaveservidor">Contraseña del Servidor:</label>
+                <label for="dclaveservidor">Contraseña del Servidor</label>
                 <input type="text" class="form-control" id="dclaveservidor" name="dclaveservidor">
               </div>
-            </form>  
           </div>
           <div class="modal-footer">
             <div>
@@ -76,6 +184,7 @@
           </div>    
       </div>
     </div>
+  </form>  
   </div>
   
   
@@ -92,19 +201,10 @@
         </div>
         <div class="modal-body">
           <form class="form-inline" id="fticket2">
+            <input type="hidden" id="eticketid" name="">
             <div class="form-group">
-              <label for="dtitulo">Titulo:</label>
-              <input type="text" class="form-control" id="etitulo" name="etitulo">
+              <label for="descnombre">¿Seguro que quiere eliminar este ticket?</label>
             </div>
-            <div class="form-group">
-              <label for="ddescripcion">Descripcion:</label>
-              <input type="text" class="form-control" id="edescripcion" name="edescripcion">
-            </div>
-            <div class="form-group">
-              <label for="dprioridad">Prioridad:</label>
-              <input type="text" class="form-control" id="eprioridad" name="eprioridad">
-            </div>
-            
           </form>
         </div>
         <div class="modal-footer">
@@ -117,7 +217,11 @@
 
    <!-- BOTON DE AGREGAR TICKET -->
   <div>
-  <button class="btn btn-primary" name="addticket" type="button" id="addticket"> Agregar Ticket</button>
+   <?php
+    if ($_SESSION['UserSession'][0]['PerfilId'] !='3' ) {
+      echo '<button class="btn btn-primary" name="addticket" type="button" id="addticket"> Agregar Ticket</button>';
+    }
+   ?> 
   </div>
 
   <!-- CUADRO MODAL DE GRABAR TICKET -->
@@ -143,11 +247,12 @@
                 <input style="display:none" id="usuarioid" name="usuarioid" value="13">
 
                 <div class="form-group">
-                  <label for="titulo">Titulo:</label> 
-                  <input class="form-control" type="text" name="titulo"  id="titulo" required="">        
+                  <label for="titulo">Titulo</label> 
+                  <!--<input type="hidden" name="ticketid"  id="ticketid" >     -->   
+                  <input class="form-control" type="text" name="titulo"  id="titulo" required=""> 
                 </div>
                 <div class="form-group">
-                  <label for="descripcion">Descripcion:</label> 
+                  <label for="descripcion">Descripcion</label> 
                   <input class="form-control" type="text" name="descripcion"  id="descripcion" required="">        
                 </div>
                 <div class="form-group">
@@ -191,6 +296,7 @@
       </div>
     </form> 
     
-    <script src="js/ticketcli.js?v=1"></script>
+    <script src="js/ticketcli.js?v=2"></script>
 
 </div>
+

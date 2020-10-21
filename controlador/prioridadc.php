@@ -1,4 +1,6 @@
 <?php
+date_default_timezone_set('America/Argentina/Buenos_Aires');
+
 include_once('validar.php');
 include_once('conexion.php');
 

@@ -38,9 +38,9 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-            <form class="form-inline" id="formarea">
+            <form id="formarea">
               <div class="form-group">
-              <label for="descarea">Descripción:</label>
+              <label for="descarea">Descripción</label>
                 <input type="text" class="form-control" id="descarea" name="descarea">
           </div>
         </form>
@@ -66,9 +66,9 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-          <form class="form-inline" id="formareae">
+          <form id="formareae">
         		<div class="form-group">
-  			    	<label for="descareae">Descripción:</label>
+  			    	<label for="descareae">Descripción</label>
           		<input type="text" class="form-control" id="descareae" name="descareae" disabled>
   		 	    </div>
           </form>
@@ -101,7 +101,7 @@
           <div class="modal-body">
             <form id="formareadesc" style="display: none;">
               <label for="descripcion">Descripción</label>
-              <input type="text" name="descripcion"  id="descripcion" value="">
+              <input type="text" class="form-control" name="descripcion"  id="descripcion">
             </form>          
           </div>
           <div class="modal-footer">

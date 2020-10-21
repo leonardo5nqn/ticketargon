@@ -98,25 +98,7 @@
         <!-- Divider -->
         <hr class="my-3">
         <!-- Heading -->
-        <h6 class="navbar-heading text-muted">Documentation</h6>
-        <!-- Navigation -->
-        <ul class="navbar-nav mb-md-3">
-          <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html">
-              <i class="ni ni-spaceship"></i> Getting started
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/foundation/colors.html">
-              <i class="ni ni-palette"></i> Foundation
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/components/alerts.html">
-              <i class="ni ni-ui-04"></i> Components
-            </a>
-          </li>
-        </ul>
+       
       </div>
     </div>
   </nav>
@@ -143,7 +125,7 @@
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="media align-items-center">
                 <span class="avatar avatar-sm rounded-circle">
-                  <img alt="Image placeholder" src="./img/theme/iconuser.jpg">
+                  <img alt="Image placeholder" src="./img/theme/iconuser2.png">
                 </span>
                 <div class="media-body ml-2 d-none d-lg-block">
                   <span class="mb-0 text-sm  font-weight-bold"><?php echo $_SESSION['UserSession'][0]['Nombre']." ".$_SESSION['UserSession'][0]['Apellido']; ?></span>
@@ -181,7 +163,7 @@
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">Tickets</h5>
-                      <span class="h2 font-weight-bold mb-0">350,897</span>
+                      <span class="h2 font-weight-bold mb-0" id="cantticket"></span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
@@ -197,8 +179,8 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Incidentes Nuevos</h5>
-                      <span class="h2 font-weight-bold mb-0">924</span>
+                      <h5 class="card-title text-uppercase text-muted mb-0">Ticket sin Asignar</h5>
+                      <span class="h2 font-weight-bold mb-0" id="totalsinasig"></span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
@@ -214,8 +196,8 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Tickets en espera</h5>
-                      <span class="h2 font-weight-bold mb-0">49</span>
+                      <h5 class="card-title text-uppercase text-muted mb-0">Tickets Prioridad Alta</h5>
+                      <span class="h2 font-weight-bold mb-0" id="totalprioalta"></span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-info text-white rounded-circle shadow">
@@ -232,7 +214,7 @@
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">Usuarios</h5>
-                      <span class="h2 font-weight-bold mb-0">2,356</span>
+                      <span class="h2 font-weight-bold mb-0" id="totaluser"></span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
@@ -248,7 +230,8 @@
       </div>
     </div>
      <!-- Footer -->
-      <footer class="footer">
+     <div id="contenedor"> </div>
+     <div> <footer class="footer">
         <div class="row align-items-center justify-content-xl-between">
           <div class="col-xl-6">
             <div class="copyright text-center text-xl-left text-muted">
@@ -264,6 +247,7 @@
           </div>
         </div>
       </footer>
+    </div>
   </div>
   <!--   Core   -->
   <script src="./js/plugins/jquery/dist/jquery.min.js"></script>
@@ -284,4 +268,4 @@
 </body>
 
 </html>  
-<script src="js/menu.js?v=1"></script>
+<script src="js/menu.js?v=2"></script>
