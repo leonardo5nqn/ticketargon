@@ -69,6 +69,7 @@
           <form id="formareae">
         		<div class="form-group">
   			    	<label for="descareae">Descripción</label>
+              <input type="hidden" name="eareaid"  id="eareaid">            
           		<input type="text" class="form-control" id="descareae" name="descareae" disabled>
   		 	    </div>
           </form>
@@ -113,5 +114,6 @@
       </div>
     </div>
   </form>  
-  <script src="js/area.js?v=2"></script>
+  <script src="js/area.js?v=3
+  "></script>
 </div>

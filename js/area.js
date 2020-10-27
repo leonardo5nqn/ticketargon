@@ -56,6 +56,7 @@ jQuery(document).ready(function(){
 			dataType:'json',
 			success:function(r){
 				jQuery('#descareae').val(r.descripcion);
+				jQuery('#eareaid').val(id);			
 				jQuery('#modalareaeliminar').modal('show');
 			}
 		});
@@ -76,9 +77,12 @@ jQuery(document).ready(function(){
 		jQuery.ajax({
 			type:'post',
 			url:'scripts/seguridad.php',
-			data:{param:60004},
+			data:{param:60004,id:jQuery('#eareaid').val()			},
 			dataType:'json',
 			success:function(r){
+				if (r==false) {
+						alert('No se puede eliminar. El area tiene un ticket asociado.');
+				}
 				jQuery('#modalareaeliminar').modal('hide');
 				listar();
 			}
@@ -96,7 +100,7 @@ function listar(){
 			console.log(r.data);
 			jQuery.each(r.data,function(k,v){
 				var fila = '<tr><td>'+v.areaid+'</td><td>'+v.descripcion+'</td><td>'+v.estado+'</td>';
-				fila += '<td><button id="'+v.areaid+'" class="btn btn-primary editar">Editar</button></td><td><button id='+v.areaid+'" class="btn btn-primary eliminar">Eliminar</button></td></tr>';
+				fila += '<td><button id="'+v.areaid+'" class="btn btn-primary editar">Editar</button></td><td><button id="'+v.areaid+'" class="btn btn-primary eliminar">Eliminar</button></td></tr>';
 				jQuery('#tablaarea tbody').append(fila);
 			})
 		}

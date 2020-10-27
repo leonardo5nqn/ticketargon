@@ -129,7 +129,7 @@
 		case 60004:
 			include_once('../controlador/areac.php');
 			$areac = new AreaC();
-			$retorno = $areac->eliminar();
+			$retorno = $areac->eliminar($_POST);
 			break;
 		case 60005:
 			include_once('../controlador/areac.php');
@@ -159,7 +159,7 @@
 		case 70004:
 			include_once('../controlador/prioridadc.php');
 			$prioridadc = new PrioridadC();
-			$retorno = $prioridadc->eliminar();
+			$retorno = $prioridadc->eliminar($_POST);
 			break;	
 		case 80000:
 			include_once('../controlador/generalc.php');

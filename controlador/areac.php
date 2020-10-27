@@ -8,7 +8,8 @@ include_once('conexion.php');
 class AreaC{
 	var $oarea = null;
 	public function __construct(){
-
+    	$driver = new mysqli_driver();
+      	$driver->report_mode = MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT;
 	}
 	public function buscar($post){
 		$areaid = $post['param1'];
@@ -62,9 +63,23 @@ class AreaC{
 		}
 		return $arr;
 	}
-	public function eliminar(){
-		$areaid = $_SESSION['sareaid'];
+	public function eliminar($post){
+		$areaid = $post['id'];
 		$mysqli = Conexion::abrir();
+		$sqlvalidar = "SELECT count(ticketid) as cantidad FROM ticket WHERE areaid=".$areaid;
+		$stmtvalidar = $mysqli->prepare($sqlvalidar);
+		$stmtvalidar->execute();
+		$rs = $stmtvalidar->get_result();
+		if($rs->num_rows>0){
+			while($fila=$rs->fetch_array()){
+				
+				if ($fila[0]>0){
+					$stmtvalidar->close();
+					return false;			
+				}
+			}	
+		}
+		
 		$sql = "DELETE FROM area WHERE areaid = ?";
 		$stmt = $mysqli->prepare($sql);
 		if($stmt!== FALSE){
@@ -73,7 +88,7 @@ class AreaC{
 			$stmt->execute();
 			$stmt->close();			
 		}
-		return;
+		return true;
 	}
 	public function editar($post){
 		$areaid = $_SESSION['sareaid'];
@@ -109,13 +124,33 @@ class AreaC{
 		$tecnico = $post['atecnico'] == 0 || $post['atecnico'] == "0" ? 'NULL' : $post['atecnico'] ;
 		$error=false;
 		$mysqli = Conexion::abrir();
-		$sql = "UPDATE ticket SET areaid=".$area.", tecnicoid=".$tecnico." WHERE ticketid= ".$ticketid; 
-		$stmt = $mysqli->prepare($sql);
-		if($stmt!==FALSE){
-			$stmt->execute();
-			$error=true;
+
+		$sqlvalidar = "SELECT count(usuarioid) as cantidad FROM usuario WHERE areaid=".$area;
+		$stmtvalidar = $mysqli->prepare($sqlvalidar);
+		$stmtvalidar->execute();
+		$rs = $stmtvalidar->get_result();
+		if($rs->num_rows>0){
+			while($fila=$rs->fetch_array()){
+				
+				if ($fila[0]>0){
+					$stmtvalidar->close();
+					// El usuario corresponde al area
+					$sql = "UPDATE ticket SET areaid=".$area.", tecnicoid=".$tecnico." WHERE ticketid= ".$ticketid; 
+					$stmt = $mysqli->prepare($sql);
+					if($stmt!==FALSE){
+						$stmt->execute();
+						return true;
+					}else{
+						return false;
+					}
+				}else{
+					// El usuario no corresponde al area
+					return false;			
+				}
+			}	
 		}
-		return '';	
+
+		return $error;	
 	}
 }
 ?>

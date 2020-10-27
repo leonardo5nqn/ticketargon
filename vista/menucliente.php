@@ -31,7 +31,7 @@
           <li class="nav-item  active ">
             <a class="nav-link  active " href="./index.php"><i class="ni ni-tv-2 text-primary"></i> Inicio</a></li>
           <li class="nav-item">
-            <a class="nav-link "id="ticket" href="#"><i class="ni ni-planet text-blue"></i> Tickets</a></li>
+            <a class="nav-link "id="ticketcli" href="#"><i class="ni ni-planet text-blue"></i> Tickets</a></li>
         </ul>
         <!-- Divider -->
         <hr class="my-3">
@@ -192,4 +192,4 @@
 </body>
 
 </html>  
-<script src="js/menu.js?v=2"></script>
+<script src="js/menu.js?v=6"></script>

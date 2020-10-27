@@ -50,6 +50,9 @@ include_once('modelo/usuario.php');
         ?>
 
   </div>
+  <div id="contenedor">
+    
+  </div>
 
 
 </html>

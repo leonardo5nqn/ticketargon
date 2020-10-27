@@ -2,7 +2,10 @@ jQuery(document).ready(function(){
 	jQuery('#home').on('click', function(){
 		jQuery('#contenedor').load('vista/home.php')
 	});
-		jQuery('#ticket').on('click', function(){
+	jQuery('#ticket').on('click', function(){
+		jQuery('#contenedor').load('vista/admticket.php')
+	});
+	jQuery('#ticketcli').on('click', function(){
 		jQuery('#contenedor').load('vista/admticket.php')
 	});
 	jQuery('#usuario').on('click', function(){

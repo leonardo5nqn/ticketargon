@@ -8,15 +8,14 @@ include_once('conexion.php');
 class PrioridadC{
 	var $oprioridad = null;
 	public function __construct(){
-
-	}
+    	$driver = new mysqli_driver();
+      $driver->report_mode = MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT;
+  	}
 	public function buscar($post){
 		$prioridadid = $post['param1'];
-		$_SESSION['sprioridadid'] = $areaid;
 		$mysqli = Conexion::abrir();
-		$sql = "SELECT prioridadid, descripcion, estado FROM area WHERE prioridadid = ?";
+		$sql = "SELECT prioridadid, descripcion, estado FROM prioridad WHERE prioridadid = ".$prioridadid;
 		$stmt = $mysqli->prepare($sql);
-		$stmt->bind_param('i',$prioridadid);
 		$stmt->execute();
 		$rs = $stmt->get_result();
 		if($rs->num_rows>0){
@@ -30,7 +29,7 @@ class PrioridadC{
 	public function listar(){
 		$mysqli = Conexion::abrir();
 		$arr1 = array();
-		$sql = "SELECT prioridadid, descripcion, estado FROM prioridad";
+		$sql = "SELECT prioridadid, descripcion, estado FROM prioridad WHERE estado=0";
 		$stmt = $mysqli->prepare($sql);
 		$stmt->execute();
 		$rs = $stmt->get_result();
@@ -62,21 +61,40 @@ class PrioridadC{
 		}
 		return $arr;
 	}
-	public function eliminar(){
-		$prioridadid = $_SESSION['sprioridadid'];
+	public function eliminar($post){
+		$prioridadid = $post['id'];
 		$mysqli = Conexion::abrir();
-		$sql = "DELETE FROM area WHERE prioridadid = ?";
-		$stmt = $mysqli->prepare($sql);
-		if($stmt!== FALSE){
-			$estado = 0;		
-			$stmt->bind_param('i',$prioridadid);
-			$stmt->execute();
-			$stmt->close();			
+
+		$sqlvalidar = "SELECT count(ticketid) as cantidad FROM ticket WHERE prioridadid=".$prioridadid;
+		$stmtvalidar = $mysqli->prepare($sqlvalidar);
+		$stmtvalidar->execute();
+		$rs = $stmtvalidar->get_result();
+		if($rs->num_rows>0){
+			while($fila=$rs->fetch_array()){
+				
+				if ($fila[0]>0){
+					$stmtvalidar->close();
+					//La prioridad exiten en algun ticket.
+					return false;			
+				}else{
+					//La propiridad no existe, se puede inhabilitar.
+					$sql = "UPDATE prioridad SET estado=1 WHERE prioridadid = ".$prioridadid;
+					$stmt = $mysqli->prepare($sql);
+					if($stmt!== FALSE){
+						$estado = 0;
+						$stmt->execute();
+						$stmt->close();			
+						return true;
+					}else{
+						return false;
+					}	
+				}
+			}	
 		}
-		return;
+		return false;
 	}
 	public function editar($post){
-		$prioridadid = $_SESSION['sprioridadid'];
+		$prioridadid = $post['id'];
 		$descripcion = $post['param1'];
 		$mysqli = Conexion::abrir();
 		$mysqli->set_charset("utf8");

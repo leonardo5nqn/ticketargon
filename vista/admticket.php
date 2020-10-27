@@ -296,7 +296,7 @@
       </div>
     </form> 
     
-    <script src="js/ticketcli.js?v=2"></script>
+    <script src="js/ticketcli.js?v=5"></script>
 
 </div>
 

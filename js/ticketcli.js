@@ -136,6 +136,9 @@ jQuery(document).ready(function(){
 			data:datos,
 			dataType:'json',
 			success:function(r){
+				if (r==false) {
+						alert('Error en la actualizacion o el usuario no corresponde al area asignada.');
+				}
 				jQuery('#modalarea').modal('hide');
 				listar();
 			}

@@ -41,6 +41,7 @@
             <form class="form-inline" id="formarea">
               <div class="form-group">
               <label for="descprioridad">Descripción:</label>
+                <input type="hidden" name="prioridadid"  id="prioridadid">            
                 <input type="text" class="form-control" id="descprioridad" name="descprioridad">
           </div>
         </form>
@@ -68,8 +69,8 @@
         <div class="modal-body">
           <form class="form-inline" id="formprioridade">
         		<div class="form-group">
-  			    	<label for="descprioridade">Descripción:</label>
-          		<input type="text" class="form-control" id="descareae" name="descprioridade" disabled>
+  			    	<label>¿Seguro que quiere eliminar esta "Prioridad"?</label>
+               <input type="hidden" name="eprioridadid"  id="eprioridadid">  
   		 	    </div>
           </form>
         </div>
@@ -113,5 +114,5 @@
       </div>
     </div>
   </form>  
-  <script src="js/prioridad.js?v=2"></script>
+  <script src="js/prioridad.js?v=7"></script>
 </div>

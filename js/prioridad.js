@@ -43,6 +43,7 @@ jQuery(document).ready(function(){
 			dataType:'json',
 			success:function(r){
 				jQuery('#descprioridad').val(r.descripcion);
+				jQuery('#prioridadid').val(id);
 				jQuery('#modalprioridad').modal('show');
 			}
 		});
@@ -55,7 +56,7 @@ jQuery(document).ready(function(){
 			data:{param:70003,param1:id},
 			dataType:'json',
 			success:function(r){
-				jQuery('#descprioridade').val(r.descripcion);
+				jQuery('#eprioridadid').val(id)
 				jQuery('#modalprioridadeliminar').modal('show');
 			}
 		});
@@ -64,7 +65,7 @@ jQuery(document).ready(function(){
 		jQuery.ajax({
 			type:'post',
 			url:'scripts/seguridad.php',
-			data:{param:70002,param1:jQuery('#descprioridad').val()},
+			data:{param:70002,param1:jQuery('#descprioridad').val(),id:jQuery('#prioridadid').val()},
 			dataType:'json',
 			success:function(r){
 				jQuery('#modalprioridad').modal('hide');
@@ -76,9 +77,12 @@ jQuery(document).ready(function(){
 		jQuery.ajax({
 			type:'post',
 			url:'scripts/seguridad.php',
-			data:{param:70004},
+			data:{param:70004,id:jQuery('#eprioridadid').val()},
 			dataType:'json',
 			success:function(r){
+				if (r==false) {
+					alert('No se puede eliminar. La prioridad se encuentra asignada a un ticket.');
+				}
 				jQuery('#modalprioridadeliminar').modal('hide');
 				listar();
 			}
@@ -90,13 +94,14 @@ function listar(){
 	jQuery.ajax({
 		type:'post',
 		url:'scripts/seguridad.php',
+		asyc: true,
 		data:{param:70000},
 		dataType:'json',
 		success:function(r){
 			console.log(r.data);
 			jQuery.each(r.data,function(k,v){
 				var fila = '<tr><td>'+v.prioridadid+'</td><td>'+v.descripcion+'</td><td>'+v.estado+'</td>';
-				fila += '<td><button id="'+v.prioridadid+'" class="btn btn-primary editar">Editar</button></td><td><button id='+v.prioridadid+'" class="btn btn-primary eliminar">Eliminar</button></td></tr>';
+				fila += '<td><button id="'+v.prioridadid+'" class="btn btn-primary editar">Editar</button></td><td><button id="'+v.prioridadid+'" class="btn btn-primary eliminar">Eliminar</button></td></tr>';
 				jQuery('#tablaprioridad tbody').append(fila);
 			})
 		}
